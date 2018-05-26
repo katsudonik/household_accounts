@@ -44,8 +44,6 @@ class PurchaseHistoriesController extends AppController {
 	    $ym = $this->request->query('ym') ? $this->request->query('ym') : date('Y-m');
 	    $aggregateItemHistories = $this->Item->aggregate_monthly_purchase_by_item($ym);
 
-
-
 	    $this->set(array(
 	        'aggregateItemHistories' => $aggregateItemHistories,
 	        '_serialize' => array('aggregateItemHistories')
