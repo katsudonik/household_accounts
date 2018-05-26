@@ -16,8 +16,9 @@ class PurchaseHistoriesController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator');
-
+	public $components = array('Paginator',
+	    'RequestHandler',
+	);
 	public $uses = array(
 		'PurchaseHistory',
     	'Item',
@@ -35,8 +36,21 @@ class PurchaseHistoriesController extends AppController {
 		$aggregateItemHistories = $this->Item->aggregate_monthly_purchase_by_item($ym);
 		$this->set('aggregateItemHistories', $aggregateItemHistories);
 		$this->set('aggregateSumHistory', $this->Item->aggregate_monthly_purchase($aggregateItemHistories));
+		$this->set('ym', $ym);
 	}
 
+	public function aggregate_c3() {
+	    $this->RequestHandler->renderAs($this, 'json');
+	    $ym = $this->request->query('ym') ? $this->request->query('ym') : date('Y-m');
+	    $aggregateItemHistories = $this->Item->aggregate_monthly_purchase_by_item($ym);
+
+
+
+	    $this->set(array(
+	        'aggregateItemHistories' => $aggregateItemHistories,
+	        '_serialize' => array('aggregateItemHistories')
+	    ));
+	}
 
 /**
  * view method

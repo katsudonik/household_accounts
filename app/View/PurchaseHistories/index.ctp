@@ -57,6 +57,7 @@
 			<th><?php echo $this->Paginator->sort('budget_price'); ?></th>
 			<th><?php echo $this->Paginator->sort('price'); ?></th>
 			<th><?php echo $this->Paginator->sort('remain'); ?></th>
+			<th><?php echo 'chart'; ?></th>
 	</tr>
 	</thead>
 	<tbody>
@@ -74,6 +75,9 @@
 		</td>
 		<td>
 			<?php echo h($purchaseHistory['remain']); ?>
+		</td>
+		<td>
+			<div id="chart_<?php echo h($purchaseHistory['id']); ?>"></div>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -108,7 +112,7 @@
 
 <div class="index">
 <?php for($i = 1; $i <= 18; $i++): ?>
-<div id="chart_<?php echo $i; ?>"></div>
+<!--<div id="chart_<?php echo $i; ?>"></div>-->
 <?php endfor; ?>
 </div>
 
