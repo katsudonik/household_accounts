@@ -8,8 +8,6 @@
 			<th><?php echo $this->Paginator->sort('purchase_date'); ?></th>
 			<th><?php echo $this->Paginator->sort('price'); ?></th>
 			<th><?php echo $this->Paginator->sort('memo'); ?></th>
-			<th><?php echo $this->Paginator->sort('created'); ?></th>
-			<th><?php echo $this->Paginator->sort('modified'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	</thead>
@@ -23,8 +21,6 @@
 		<td><?php echo h($purchaseHistory['PurchaseHistory']['purchase_date']); ?>&nbsp;</td>
 		<td><?php echo h($purchaseHistory['PurchaseHistory']['price']); ?>&nbsp;</td>
 		<td><?php echo h($purchaseHistory['PurchaseHistory']['memo']); ?>&nbsp;</td>
-		<td><?php echo h($purchaseHistory['PurchaseHistory']['created']); ?>&nbsp;</td>
-		<td><?php echo h($purchaseHistory['PurchaseHistory']['modified']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $purchaseHistory['PurchaseHistory']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $purchaseHistory['PurchaseHistory']['id'])); ?>
@@ -43,6 +39,7 @@
 	<tr>
 			<th><?php echo $this->Paginator->sort('item_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('price'); ?></th>
+			<th><?php echo $this->Paginator->sort('remain'); ?></th>
 	</tr>
 	</thead>
 	<tbody>
@@ -52,7 +49,12 @@
 		<td>
 			<?php echo h($purchaseHistory['Item']['name']); ?>
 		</td>
-		<td><?php echo h($purchaseHistory[0]['price']); ?>&nbsp;</td>
+		<td>
+			<?php echo h($purchaseHistory[0]['price']); ?>&nbsp;
+		</td>
+		<td>
+			<?php echo h($purchaseHistory[0]['remain']); ?>&nbsp;
+		</td>
 	</tr>
 <?php endforeach; ?>
 	</tbody>
