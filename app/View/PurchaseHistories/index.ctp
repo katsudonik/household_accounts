@@ -73,7 +73,7 @@
 			<?php echo h($purchaseHistory['price']); ?>
 		</td>
 		<td>
-			<?php echo h($purchaseHistory['remain']); ?>&nbsp;
+			<?php echo h($purchaseHistory['remain']); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -104,6 +104,20 @@
 
 </div>
 
+
+
+<div class="index">
+<?php for($i = 1; $i <= 18; $i++): ?>
+<div id="chart_<?php echo $i; ?>"></div>
+<?php endfor; ?>
+</div>
+
+
+
+
+
+<?php echo $this->Html->script('graph'); ?>
+
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
@@ -113,3 +127,5 @@
 		<li><?php echo $this->Html->link(__('List Budgets'), array('controller' => 'budgets', 'action' => 'index')); ?> </li>
 	</ul>
 </div>
+
+<div><input type="hidden" class="ym" value="<?php echo $ym; ?>"></div>

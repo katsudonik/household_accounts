@@ -108,4 +108,10 @@ class Item extends AppModel {
 	        'remain' => array_sum(Hash::extract($records, '{n}.remain')),
 	    ];
 	}
+
+	public function convert_c3_format($records)
+	{
+	    $budget_price = ['budget_price'];
+	    $budget_price = array_merge($budget_price, Hash::extract($records, '{n}.budget_price'));
+	}
 }
