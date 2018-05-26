@@ -64,6 +64,7 @@ class Item extends AppModel {
 
 	private $_virtualFields = array(
 	    'name' => 'Item.name',
+	    'budget_id' => 'Budget.id',
 	    'budget_price' => 'Budget.price',
 	    'price' => 'CASE WHEN PurchaseHistory.price IS NULL THEN 0 ELSE SUM(PurchaseHistory.price) END',
 	    'remain' => 'CASE WHEN PurchaseHistory.price IS NULL THEN Budget.price ELSE  Budget.price - SUM(PurchaseHistory.price) END',
@@ -76,6 +77,7 @@ class Item extends AppModel {
 	    $records = Hash::extract($this->find('all', [
 	        'fields' => [
 	            'name',
+	            'budget_id',
 	            'budget_price',
 	            'price',
 	            'remain',

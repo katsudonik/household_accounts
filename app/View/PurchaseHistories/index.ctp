@@ -68,7 +68,7 @@
 			<?php echo h($purchaseHistory['name']); ?>
 		</td>
 		<td>
-			<?php echo h($purchaseHistory['budget_price']); ?>
+			<?php echo $this->Html->link(__(h($purchaseHistory['budget_price'])), array('controller' => 'budgets', 'action' => 'edit', $purchaseHistory['budget_id'])); ?>
 		</td>
 		<td>
 			<?php echo h($purchaseHistory['price']); ?>
