@@ -110,15 +110,6 @@
 
 
 
-<div class="index">
-<?php for($i = 1; $i <= 18; $i++): ?>
-<!--<div id="chart_<?php echo $i; ?>"></div>-->
-<?php endfor; ?>
-</div>
-
-
-
-
 
 <?php echo $this->Html->script('graph'); ?>
 
