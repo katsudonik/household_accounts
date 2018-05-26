@@ -30,4 +30,11 @@ App::uses('Model', 'Model');
  * @package       app.Model
  */
 class AppModel extends Model {
+
+    public function conditions_this_month($ym){
+        return  [
+            'purchase_date >= ' => "{$ym}-01",
+            'purchase_date < ' => date('Y-m-d', strtotime("{$ym}-01 + 1 month")),
+            ];
+    }
 }

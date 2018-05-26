@@ -1,6 +1,7 @@
 <?php
 App::uses('AppController', 'Controller');
-App::uses('PurchaseHistroy', 'Model');
+App::uses('PurchaseHistory', 'Model');
+App::uses('Item', 'Model');
 
 /**
  * PurchaseHistories Controller
@@ -17,6 +18,11 @@ class PurchaseHistoriesController extends AppController {
  */
 	public $components = array('Paginator');
 
+	public $uses = array(
+		'PurchaseHistory',
+    	'Item',
+	);
+
 /**
  * index method
  *
@@ -26,6 +32,7 @@ class PurchaseHistoriesController extends AppController {
 		$this->PurchaseHistory->recursive = 0;
 		$ym = $this->request->query('ym') ? $this->request->query('ym') : date('Y-m');
 		$this->set('purchaseHistories', $this->PurchaseHistory->find_monthly($ym));
+		$this->set('aggregateHistories', $this->Item->aggregate_monthly_purchase($ym));
 	}
 
 

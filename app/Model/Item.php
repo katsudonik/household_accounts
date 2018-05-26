@@ -62,4 +62,20 @@ class Item extends AppModel {
 		)
 	);
 
+	public function aggregate_monthly_purchase($ym)
+	{
+	    return $this->find('all', [
+	        'fields' => ['Item.name', 'SUM(PurchaseHistory.price) AS price'],
+	        'group' => ['Item.id'],
+	        'joins' => [[
+	            'type' => 'LEFT',
+	            'table' => 'purchase_histories',
+	            'alias' => 'PurchaseHistory',
+	            'conditions' => array_merge($this->conditions_this_month($ym), [
+	                'Item.id = PurchaseHistory.item_id',
+	            ]),
+	        ]],
+	    ]);
+
+	}
 }

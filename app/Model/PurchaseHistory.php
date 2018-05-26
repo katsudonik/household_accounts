@@ -62,13 +62,12 @@ class PurchaseHistory extends AppModel {
 		)
 	);
 
+
 	public function find_monthly($ym)
     {
-        return $this->find('all', [
-            'conditions' => [
-                'purchase_date >= ' => "{$ym}-01",
-                'purchase_date < ' => date('Y-m-d', strtotime("{$ym}-01 + 1 month")),
-            ]
+       return $this->find('all', [
+            'conditions' => $this->conditions_this_month($ym)
         ]);
     }
+
 }

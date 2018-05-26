@@ -36,6 +36,31 @@
 	</table>
 
 </div>
+<div class="purchaseHistories index">
+	<h2>集計</h2>
+	<table cellpadding="0" cellspacing="0">
+	<thead>
+	<tr>
+			<th><?php echo $this->Paginator->sort('item_id'); ?></th>
+			<th><?php echo $this->Paginator->sort('price'); ?></th>
+	</tr>
+	</thead>
+	<tbody>
+
+	<?php foreach ($aggregateHistories as $purchaseHistory): ?>
+	<tr>
+		<td>
+			<?php echo h($purchaseHistory['Item']['name']); ?>
+		</td>
+		<td><?php echo h($purchaseHistory[0]['price']); ?>&nbsp;</td>
+	</tr>
+<?php endforeach; ?>
+	</tbody>
+	</table>
+
+</div>
+
+
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
