@@ -14,7 +14,9 @@
 	<tbody>
 	<?php foreach ($purchaseHistories as $purchaseHistory): ?>
 	<tr>
-		<td><?php echo h($purchaseHistory['PurchaseHistory']['id']); ?>&nbsp;</td>
+		<td>
+			<?php echo $this->Html->link(__(h($purchaseHistory['PurchaseHistory']['id'])), array('action' => 'view', $purchaseHistory['PurchaseHistory']['id'])); ?>
+		</td>
 		<td>
 			<?php echo $this->Html->link($purchaseHistory['Item']['name'], array('controller' => 'items', 'action' => 'view', $purchaseHistory['Item']['id'])); ?>
 		</td>
@@ -22,7 +24,6 @@
 		<td><?php echo h($purchaseHistory['PurchaseHistory']['price']); ?>&nbsp;</td>
 		<td><?php echo h($purchaseHistory['PurchaseHistory']['memo']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $purchaseHistory['PurchaseHistory']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $purchaseHistory['PurchaseHistory']['id'])); ?>
 			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $purchaseHistory['PurchaseHistory']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $purchaseHistory['PurchaseHistory']['id']))); ?>
 		</td>
