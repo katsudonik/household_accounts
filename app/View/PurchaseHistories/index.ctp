@@ -29,6 +29,21 @@
 		</td>
 	</tr>
 <?php endforeach; ?>
+<tr>
+	<td>
+		<?php echo $this->Html->link(__('+'), array('action' => 'add')); ?>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+	<td>
+	</td>
+</tr>
 	</tbody>
 	</table>
 
