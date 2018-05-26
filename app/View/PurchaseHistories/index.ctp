@@ -33,7 +33,7 @@
 
 </div>
 <div class="purchaseHistories index">
-	<h2>集計</h2>
+	<h2>Aggregation</h2>
 	<table cellpadding="0" cellspacing="0">
 	<thead>
 	<tr>
@@ -61,32 +61,26 @@
 		</td>
 	</tr>
 <?php endforeach; ?>
-	</tbody>
-	</table>
-
-</div>
-
-
-<div class="purchaseHistories index">
-	<h2>総計</h2>
-	<table cellpadding="0" cellspacing="0">
-	<thead>
-	<tr>
-			<th><?php echo $this->Paginator->sort('budget_price'); ?></th>
-			<th><?php echo $this->Paginator->sort('price'); ?></th>
-			<th><?php echo $this->Paginator->sort('remain'); ?></th>
-	</tr>
-	</thead>
-	<tbody>
 	<tr>
 		<td>
-			<?php echo h($aggregateSumHistory['budget_price']); ?>
+			<b>
+				Sum
+			</b>
 		</td>
 		<td>
-			<?php echo h($aggregateSumHistory['price']); ?>
+			<b>
+				<?php echo h($aggregateSumHistory['budget_price']); ?>
+			</b>
 		</td>
 		<td>
-			<?php echo h($aggregateSumHistory['remain']); ?>
+			<b>
+				<?php echo h($aggregateSumHistory['price']); ?>
+			</b>
+		</td>
+		<td>
+			<b>
+				<?php echo h($aggregateSumHistory['remain']); ?>
+			</b>
 		</td>
 	</tr>
 	</tbody>
