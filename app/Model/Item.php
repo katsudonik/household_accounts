@@ -62,14 +62,23 @@ class Item extends AppModel {
 		)
 	);
 
-	public function aggregate_monthly_purchase($ym)
+	private $_virtualFields = array(
+	    'name' => 'Item.name',
+	    'budget_price' => 'Budget.price',
+	    'price' => 'CASE WHEN PurchaseHistory.price IS NULL THEN 0 ELSE SUM(PurchaseHistory.price) END',
+	    'remain' => 'CASE WHEN PurchaseHistory.price IS NULL THEN Budget.price ELSE  Budget.price - SUM(PurchaseHistory.price) END',
+	);
+
+	public function aggregate_monthly_purchase_by_item($ym)
 	{
-	    return $this->find('all', [
+	    $this->virtualFields = $this->_virtualFields;
+
+	    $records = Hash::extract($this->find('all', [
 	        'fields' => [
-	            'Item.name',
-	            'Budget.price AS budget_price',
-	            'CASE WHEN PurchaseHistory.price IS NULL THEN 0 ELSE SUM(PurchaseHistory.price) END price',
-	            'CASE WHEN PurchaseHistory.price IS NULL THEN Budget.price ELSE  Budget.price - SUM(PurchaseHistory.price) END remain',
+	            'name',
+	            'budget_price',
+	            'price',
+	            'remain',
 	        ],
 	        'group' => ['Item.id'],
 	        'joins' => [
@@ -86,6 +95,17 @@ class Item extends AppModel {
 	                'conditions' => ['Item.id = Budget.item_id',],
 	            ],
 	        ],
-	    ]);
+	    ]), '{n}.Item');
+	    $this->virtualFields = [];
+	    return $records;
+
+	}
+	public function aggregate_monthly_purchase($records)
+	{
+	    return [
+	        'budget_price' => array_sum(Hash::extract($records, '{n}.budget_price')),
+	        'price' => array_sum(Hash::extract($records, '{n}.price')),
+	        'remain' => array_sum(Hash::extract($records, '{n}.remain')),
+	    ];
 	}
 }

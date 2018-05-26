@@ -32,7 +32,9 @@ class PurchaseHistoriesController extends AppController {
 		$this->PurchaseHistory->recursive = 0;
 		$ym = $this->request->query('ym') ? $this->request->query('ym') : date('Y-m');
 		$this->set('purchaseHistories', $this->PurchaseHistory->find_monthly($ym));
-		$this->set('aggregateHistories', $this->Item->aggregate_monthly_purchase($ym));
+		$aggregateItemHistories = $this->Item->aggregate_monthly_purchase_by_item($ym);
+		$this->set('aggregateItemHistories', $aggregateItemHistories);
+		$this->set('aggregateSumHistory', $this->Item->aggregate_monthly_purchase($aggregateItemHistories));
 	}
 
 

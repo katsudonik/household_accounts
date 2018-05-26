@@ -45,19 +45,19 @@
 	</thead>
 	<tbody>
 
-	<?php foreach ($aggregateHistories as $purchaseHistory): ?>
+	<?php foreach ($aggregateItemHistories as $purchaseHistory): ?>
 	<tr>
 		<td>
-			<?php echo h($purchaseHistory['Item']['name']); ?>
+			<?php echo h($purchaseHistory['name']); ?>
 		</td>
 		<td>
-			<?php echo h($purchaseHistory['Budget']['budget_price']); ?>
+			<?php echo h($purchaseHistory['budget_price']); ?>
 		</td>
 		<td>
-			<?php echo h($purchaseHistory[0]['price']); ?>
+			<?php echo h($purchaseHistory['price']); ?>
 		</td>
 		<td>
-			<?php echo h($purchaseHistory[0]['remain']); ?>&nbsp;
+			<?php echo h($purchaseHistory['remain']); ?>&nbsp;
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -66,6 +66,33 @@
 
 </div>
 
+
+<div class="purchaseHistories index">
+	<h2>総計</h2>
+	<table cellpadding="0" cellspacing="0">
+	<thead>
+	<tr>
+			<th><?php echo $this->Paginator->sort('budget_price'); ?></th>
+			<th><?php echo $this->Paginator->sort('price'); ?></th>
+			<th><?php echo $this->Paginator->sort('remain'); ?></th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td>
+			<?php echo h($aggregateSumHistory['budget_price']); ?>
+		</td>
+		<td>
+			<?php echo h($aggregateSumHistory['price']); ?>
+		</td>
+		<td>
+			<?php echo h($aggregateSumHistory['remain']); ?>
+		</td>
+	</tr>
+	</tbody>
+	</table>
+
+</div>
 
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
