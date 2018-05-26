@@ -5,7 +5,7 @@
 	<?php
 		echo $this->Form->input('id');
 		echo $this->Form->input('item_id');
-		echo $this->Form->input('purchase_date');
+		echo $this->Form->input('purchase_date', array('type' => 'text', 'class' => 'datepicker'));
 		echo $this->Form->input('price');
 		echo $this->Form->input('memo');
 	?>
