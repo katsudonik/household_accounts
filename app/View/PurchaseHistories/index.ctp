@@ -38,6 +38,7 @@
 	<thead>
 	<tr>
 			<th><?php echo $this->Paginator->sort('item_id'); ?></th>
+			<th><?php echo $this->Paginator->sort('budget_price'); ?></th>
 			<th><?php echo $this->Paginator->sort('price'); ?></th>
 			<th><?php echo $this->Paginator->sort('remain'); ?></th>
 	</tr>
@@ -50,7 +51,10 @@
 			<?php echo h($purchaseHistory['Item']['name']); ?>
 		</td>
 		<td>
-			<?php echo h($purchaseHistory[0]['price']); ?>&nbsp;
+			<?php echo h($purchaseHistory['Budget']['budget_price']); ?>
+		</td>
+		<td>
+			<?php echo h($purchaseHistory[0]['price']); ?>
 		</td>
 		<td>
 			<?php echo h($purchaseHistory[0]['remain']); ?>&nbsp;

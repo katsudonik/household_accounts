@@ -66,9 +66,10 @@ class Item extends AppModel {
 	{
 	    return $this->find('all', [
 	        'fields' => [
-	           'Item.name',
-	           'CASE WHEN PurchaseHistory.price IS NULL THEN 0 ELSE SUM(PurchaseHistory.price) END price',
-	           'CASE WHEN PurchaseHistory.price IS NULL THEN Budget.price ELSE  Budget.price - SUM(PurchaseHistory.price) END remain'
+	            'Item.name',
+	            'Budget.price AS budget_price',
+	            'CASE WHEN PurchaseHistory.price IS NULL THEN 0 ELSE SUM(PurchaseHistory.price) END price',
+	            'CASE WHEN PurchaseHistory.price IS NULL THEN Budget.price ELSE  Budget.price - SUM(PurchaseHistory.price) END remain',
 	        ],
 	        'group' => ['Item.id'],
 	        'joins' => [
