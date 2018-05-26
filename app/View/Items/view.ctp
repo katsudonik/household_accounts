@@ -21,16 +21,6 @@
 			<?php echo h($item['Item']['modified']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Dalete Flag'); ?></dt>
-		<dd>
-			<?php echo h($item['Item']['dalete_flag']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Daleted'); ?></dt>
-		<dd>
-			<?php echo h($item['Item']['daleted']); ?>
-			&nbsp;
-		</dd>
 	</dl>
 </div>
 <div class="actions">
@@ -56,8 +46,6 @@
 		<th><?php echo __('Price'); ?></th>
 		<th><?php echo __('Created'); ?></th>
 		<th><?php echo __('Modified'); ?></th>
-		<th><?php echo __('Dalete Flag'); ?></th>
-		<th><?php echo __('Daleted'); ?></th>
 		<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php foreach ($item['Budget'] as $budget): ?>
@@ -67,8 +55,6 @@
 			<td><?php echo $budget['price']; ?></td>
 			<td><?php echo $budget['created']; ?></td>
 			<td><?php echo $budget['modified']; ?></td>
-			<td><?php echo $budget['dalete_flag']; ?></td>
-			<td><?php echo $budget['daleted']; ?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'budgets', 'action' => 'view', $budget['id'])); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'budgets', 'action' => 'edit', $budget['id'])); ?>
@@ -97,8 +83,6 @@
 		<th><?php echo __('Memo'); ?></th>
 		<th><?php echo __('Created'); ?></th>
 		<th><?php echo __('Modified'); ?></th>
-		<th><?php echo __('Dalete Flag'); ?></th>
-		<th><?php echo __('Daleted'); ?></th>
 		<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php foreach ($item['PurchaseHistory'] as $purchaseHistory): ?>
@@ -110,8 +94,6 @@
 			<td><?php echo $purchaseHistory['memo']; ?></td>
 			<td><?php echo $purchaseHistory['created']; ?></td>
 			<td><?php echo $purchaseHistory['modified']; ?></td>
-			<td><?php echo $purchaseHistory['dalete_flag']; ?></td>
-			<td><?php echo $purchaseHistory['daleted']; ?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View'), array('controller' => 'purchase_histories', 'action' => 'view', $purchaseHistory['id'])); ?>
 				<?php echo $this->Html->link(__('Edit'), array('controller' => 'purchase_histories', 'action' => 'edit', $purchaseHistory['id'])); ?>

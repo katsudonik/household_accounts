@@ -7,8 +7,6 @@
 		echo $this->Form->input('purchase_date');
 		echo $this->Form->input('price');
 		echo $this->Form->input('memo');
-		echo $this->Form->input('dalete_flag');
-		echo $this->Form->input('daleted');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

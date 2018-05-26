@@ -10,8 +10,6 @@
 			<th><?php echo $this->Paginator->sort('memo'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
-			<th><?php echo $this->Paginator->sort('dalete_flag'); ?></th>
-			<th><?php echo $this->Paginator->sort('daleted'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	</thead>
@@ -27,8 +25,6 @@
 		<td><?php echo h($purchaseHistory['PurchaseHistory']['memo']); ?>&nbsp;</td>
 		<td><?php echo h($purchaseHistory['PurchaseHistory']['created']); ?>&nbsp;</td>
 		<td><?php echo h($purchaseHistory['PurchaseHistory']['modified']); ?>&nbsp;</td>
-		<td><?php echo h($purchaseHistory['PurchaseHistory']['dalete_flag']); ?>&nbsp;</td>
-		<td><?php echo h($purchaseHistory['PurchaseHistory']['daleted']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $purchaseHistory['PurchaseHistory']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $purchaseHistory['PurchaseHistory']['id'])); ?>
@@ -38,19 +34,7 @@
 <?php endforeach; ?>
 	</tbody>
 	</table>
-	<p>
-	<?php
-	echo $this->Paginator->counter(array(
-		'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
-	));
-	?>	</p>
-	<div class="paging">
-	<?php
-		echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
-		echo $this->Paginator->numbers(array('separator' => ''));
-		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
-	?>
-	</div>
+
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
@@ -58,5 +42,6 @@
 		<li><?php echo $this->Html->link(__('New Purchase History'), array('action' => 'add')); ?></li>
 		<li><?php echo $this->Html->link(__('List Items'), array('controller' => 'items', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Item'), array('controller' => 'items', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Budgets'), array('controller' => 'budgets', 'action' => 'index')); ?> </li>
 	</ul>
 </div>

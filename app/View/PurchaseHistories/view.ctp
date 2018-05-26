@@ -36,16 +36,6 @@
 			<?php echo h($purchaseHistory['PurchaseHistory']['modified']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Dalete Flag'); ?></dt>
-		<dd>
-			<?php echo h($purchaseHistory['PurchaseHistory']['dalete_flag']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Daleted'); ?></dt>
-		<dd>
-			<?php echo h($purchaseHistory['PurchaseHistory']['daleted']); ?>
-			&nbsp;
-		</dd>
 	</dl>
 </div>
 <div class="actions">

@@ -26,16 +26,6 @@
 			<?php echo h($budget['Budget']['modified']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Dalete Flag'); ?></dt>
-		<dd>
-			<?php echo h($budget['Budget']['dalete_flag']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Daleted'); ?></dt>
-		<dd>
-			<?php echo h($budget['Budget']['daleted']); ?>
-			&nbsp;
-		</dd>
 	</dl>
 </div>
 <div class="actions">

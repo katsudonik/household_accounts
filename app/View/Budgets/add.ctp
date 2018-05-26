@@ -5,8 +5,6 @@
 	<?php
 		echo $this->Form->input('item_id');
 		echo $this->Form->input('price');
-		echo $this->Form->input('dalete_flag');
-		echo $this->Form->input('daleted');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

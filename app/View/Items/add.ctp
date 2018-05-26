@@ -4,8 +4,6 @@
 		<legend><?php echo __('Add Item'); ?></legend>
 	<?php
 		echo $this->Form->input('name');
-		echo $this->Form->input('dalete_flag');
-		echo $this->Form->input('daleted');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

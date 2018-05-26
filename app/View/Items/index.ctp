@@ -7,8 +7,6 @@
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
-			<th><?php echo $this->Paginator->sort('dalete_flag'); ?></th>
-			<th><?php echo $this->Paginator->sort('daleted'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	</thead>
@@ -19,8 +17,6 @@
 		<td><?php echo h($item['Item']['name']); ?>&nbsp;</td>
 		<td><?php echo h($item['Item']['created']); ?>&nbsp;</td>
 		<td><?php echo h($item['Item']['modified']); ?>&nbsp;</td>
-		<td><?php echo h($item['Item']['dalete_flag']); ?>&nbsp;</td>
-		<td><?php echo h($item['Item']['daleted']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $item['Item']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $item['Item']['id'])); ?>

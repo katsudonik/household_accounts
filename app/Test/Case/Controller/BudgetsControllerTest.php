@@ -13,7 +13,8 @@ class BudgetsControllerTest extends ControllerTestCase {
  */
 	public $fixtures = array(
 		'app.budget',
-		'app.item'
+		'app.item',
+		'app.purchase_history'
 	);
 
 /**
