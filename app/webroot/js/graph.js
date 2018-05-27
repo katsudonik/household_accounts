@@ -41,6 +41,38 @@ $(function(){
     })
 
 
+
+
+
+    $.ajax({
+        url:'/purchase_histories/aggregate_c3_item',
+        type:'GET',
+        data:{
+        }
+    })
+    .done( (data) => {
+        console.log(data);
+
+        columns = [];
+        data['aggregateItemHistories'].forEach(function(record) {
+        	columns.push([record['name'], record['price']]);
+        });
+
+        c3.generate({
+        	bindto: '#chart_item',
+  	        data: {
+  	            columns: columns,
+  	            type : 'pie',
+            }
+        });
+    })
+    .fail( (data) => {
+        $('.result').html(data);
+        console.log(data);
+    })
+
+
+
     $.ajax({
         url:'/purchase_histories/aggregate_c3_all',
         type:'GET',

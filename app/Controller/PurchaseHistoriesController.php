@@ -53,14 +53,25 @@ class PurchaseHistoriesController extends AppController {
 	// TODO
 	public function aggregate_index(){
 	    $this->PurchaseHistory->recursive = 0;
-	    $ym = $this->request->query('ym') ? $this->request->query('ym') : date('Y-m');
-	    $this->set('purchaseHistories', $this->PurchaseHistory->find_monthly($ym));
-	    $aggregateItemHistories = $this->Item->aggregate_monthly_purchase_by_item($ym);
+	    //
+	    $aggregateItemHistories = $this->Item->aggregate_monthly_purchase_by_item(null, ['name', 'price',]);
 	    $this->set('aggregateItemHistories', $aggregateItemHistories);
 	    $this->set('aggregateSumHistory', $this->Item->aggregate_monthly_purchase($aggregateItemHistories));
-	    $this->set('ym', $ym);
 
 	}
+
+	public function aggregate_c3_item(){
+	    $this->RequestHandler->renderAs($this, 'json');
+	    $aggregateItemHistories = $this->Item->aggregate_monthly_purchase_by_item(null, ['name', 'price',]);
+	    $this->set('aggregateItemHistories', $aggregateItemHistories);
+
+	    $this->set(array(
+	        'aggregateItemHistories' => $aggregateItemHistories,
+	        '_serialize' => array('aggregateItemHistories')
+	    ));
+
+	}
+
 
 	public function aggregate_c3_all() {
 	    $this->RequestHandler->renderAs($this, 'json');

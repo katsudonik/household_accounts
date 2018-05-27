@@ -70,18 +70,17 @@ class Item extends AppModel {
 	    'remain' => 'CASE WHEN PurchaseHistory.price IS NULL THEN Budget.price ELSE  Budget.price - SUM(PurchaseHistory.price) END',
 	);
 
-	public function aggregate_monthly_purchase_by_item($ym)
+	public function aggregate_monthly_purchase_by_item($ym, $fields = [
+	    'name',
+	    'budget_id',
+	    'budget_price',
+	    'price',
+	    'remain',])
 	{
 	    $this->virtualFields = $this->_virtualFields;
 
 	    $records = Hash::extract($this->find('all', [
-	        'fields' => [
-	            'name',
-	            'budget_id',
-	            'budget_price',
-	            'price',
-	            'remain',
-	        ],
+	        'fields' => $fields,
 	        'group' => ['Item.id'],
 	        'joins' => [
 	            [

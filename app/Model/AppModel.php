@@ -32,6 +32,9 @@ App::uses('Model', 'Model');
 class AppModel extends Model {
 
     public function conditions_this_month($ym){
+        if($ym === null){
+            return [];
+        }
         return  [
             'purchase_date >= ' => "{$ym}-01",
             'purchase_date < ' => date('Y-m-d', strtotime("{$ym}-01 + 1 month")),
