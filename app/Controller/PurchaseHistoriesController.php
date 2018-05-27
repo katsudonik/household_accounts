@@ -93,8 +93,9 @@ class PurchaseHistoriesController extends AppController {
 
 
 	public function aggregate_c3_all() {
-	    $start = strtotime(date('Y') . '-01-01');
-	    $end = strtotime(date('Y') . '-12-01');
+	    $year = $this->_param('y', date('Y'));
+	    $start = strtotime($year . '-01-01');
+	    $end = strtotime($year . '-12-01');
 	    $ret = $this->range_month($start, $end);
 
 	    $prices = [];

@@ -57,6 +57,7 @@ function aggregate_c3_item(){
 	        url:'/purchase_histories/aggregate_c3_item',
 	        type:'GET',
 	        data:{
+	            'y':$('.y').val(),
 	        }
 	    })
 	    .done( (data) => {
@@ -85,6 +86,7 @@ function aggregate_c3_all(){
 	        url:'/purchase_histories/aggregate_c3_all',
 	        type:'GET',
 	        data:{
+	            'y':$('.y').val(),
 	        }
 	    })
 	    .done( (data) => {
