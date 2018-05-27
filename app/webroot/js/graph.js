@@ -1,15 +1,7 @@
 function aggregate_c3(){
 	$(function(){
-		$.ajax({
-	        url:'/purchase_histories/aggregate_c3',
-	        type:'GET',
-	        data:{
-	            'ym':$('.ym').val(),
-	        }
-	    })
-	    .done( (data) => {
-	        console.log(data);
-	        data['aggregateItemHistories'].forEach(function(record) {
+		function render_c3(data){
+			data['aggregateItemHistories'].forEach(function(record) {
 	              c3.generate({
 	            	  bindto: '#chart_' + record['id'],
 	            	  size: {
@@ -25,25 +17,28 @@ function aggregate_c3(){
 	                  }
 	              });
 	        });
+		}
+		$.ajax({
+	        url:'/purchase_histories/aggregate_c3',
+	        type:'GET',
+	        data:{
+	            'ym':$('.ym').val(),
+	        }
+	    })
+	    .done( (data) => {
+	        console.log(data);
+	        render_c3(data);
 	    })
 	    .fail( (data) => {
 	        $('.result').html(data);
 	        console.log(data);
-	    })
+	    });
 	});
 }
 
 function aggregate_c3_item(){
 	$(function(){
-	    $.ajax({
-	        url:'/purchase_histories/aggregate_c3_item',
-	        type:'GET',
-	        data:{
-	        }
-	    })
-	    .done( (data) => {
-	        console.log(data);
-
+		function render_c3(data){
 	        columns = [];
 	        data['aggregateItemHistories'].forEach(function(record) {
 	        	columns.push([record['name'], record['price']]);
@@ -56,17 +51,36 @@ function aggregate_c3_item(){
 	  	            type : 'pie',
 	            }
 	        });
+		}
+
+	    $.ajax({
+	        url:'/purchase_histories/aggregate_c3_item',
+	        type:'GET',
+	        data:{
+	        }
+	    })
+	    .done( (data) => {
+	        console.log(data);
+	        render_c3(data);
 	    })
 	    .fail( (data) => {
 	        $('.result').html(data);
 	        console.log(data);
-	    })
-
+	    });
 	});
 }
 
 function aggregate_c3_all(){
 	$(function(){
+		function render_c3(data){
+			c3.generate({
+	      	  bindto: '#chart_all',
+	            data: {
+	                columns: data['aggregateItemHistories'],
+	            }
+	        });
+		}
+
 	    $.ajax({
 	        url:'/purchase_histories/aggregate_c3_all',
 	        type:'GET',
@@ -75,18 +89,11 @@ function aggregate_c3_all(){
 	    })
 	    .done( (data) => {
 	        console.log(data);
-
-	        c3.generate({
-	      	  bindto: '#chart_all',
-	            data: {
-	                columns: data['aggregateItemHistories'],
-	            }
-	        });
-
+	        render_c3(data);
 	    })
 	    .fail( (data) => {
 	        $('.result').html(data);
 	        console.log(data);
-	    })
+	    });
 	});
 }
