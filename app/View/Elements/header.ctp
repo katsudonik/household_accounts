@@ -17,5 +17,11 @@
             <li><?php echo $this->Html->link(__('New'), array('controller' => 'budgets', 'action' => 'add')); ?> </li>
         </ul>
     </li>
+    <li>Aggregates
+        <ul class="child">
+            <li><?php echo $this->Html->link(__('Year'), array('controller' => 'purchase_histories', 'action' => 'aggregate_by_year')); ?></li>
+            <li><?php echo $this->Html->link(__('Month'), array('controller' => 'purchase_histories', 'action' => 'aggregate_by_month')); ?></li>
+        </ul>
+    </li>
 </ul>
 
