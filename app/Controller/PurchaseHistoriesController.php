@@ -50,6 +50,57 @@ class PurchaseHistoriesController extends AppController {
 	    ));
 	}
 
+	// TODO
+	public function aggregate_index(){
+	    $this->PurchaseHistory->recursive = 0;
+	    $ym = $this->request->query('ym') ? $this->request->query('ym') : date('Y-m');
+	    $this->set('purchaseHistories', $this->PurchaseHistory->find_monthly($ym));
+	    $aggregateItemHistories = $this->Item->aggregate_monthly_purchase_by_item($ym);
+	    $this->set('aggregateItemHistories', $aggregateItemHistories);
+	    $this->set('aggregateSumHistory', $this->Item->aggregate_monthly_purchase($aggregateItemHistories));
+	    $this->set('ym', $ym);
+
+	}
+
+	public function aggregate_c3_all() {
+	    $this->RequestHandler->renderAs($this, 'json');
+
+	    $start = strtotime(date('Y-m') . '-01 -1 year');
+	    $end = strtotime(date('Y-m') . '-01');
+	    $ret = $this->range_month($start, $end);
+
+	    $prices = [];
+	    foreach($ret as $ym){
+	        $aggregateItemHistories = $this->Item->aggregate_monthly_purchase_by_item($ym);
+	        $namesPrice = Hash::combine($aggregateItemHistories, '{n}.name', '{n}.price');
+
+	        foreach($namesPrice as $name => $price){
+	            $_prices[$name][] = $price;
+	        }
+	    }
+	    $c3data = [];
+	    foreach($_prices as $name => $prices){
+	        $c3data[] = array_merge([$name], $prices);
+        }
+
+
+	    $this->set(array(
+	        'aggregateItemHistories' => $c3data,
+	        '_serialize' => array('aggregateItemHistories')
+	    ));
+	}
+
+
+	private function range_month($start, $end)
+	{
+	    $ret=array();
+	    $tmp = $start;
+	    while($tmp <= $end){
+	        $ret[(date('Y-m', $tmp))] = date('Y-m', $tmp);
+	        $tmp = strtotime('+1 month', $tmp);
+	    }
+	    return $ret;
+	}
 /**
  * view method
  *

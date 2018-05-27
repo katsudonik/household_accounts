@@ -39,6 +39,29 @@ $(function(){
         $('.result').html(data);
         console.log(data);
     })
+
+
+    $.ajax({
+        url:'/purchase_histories/aggregate_c3_all',
+        type:'GET',
+        data:{
+        }
+    })
+    .done( (data) => {
+        console.log(data);
+
+        c3.generate({
+      	  bindto: '#chart_all',
+            data: {
+                columns: data['aggregateItemHistories'],
+            }
+        });
+
+    })
+    .fail( (data) => {
+        $('.result').html(data);
+        console.log(data);
+    })
 });
 
 
