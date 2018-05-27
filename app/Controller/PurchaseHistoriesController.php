@@ -69,7 +69,6 @@ class PurchaseHistoriesController extends AppController {
 	        'aggregateItemHistories' => $aggregateItemHistories,
 	        '_serialize' => array('aggregateItemHistories')
 	    ));
-
 	}
 
 

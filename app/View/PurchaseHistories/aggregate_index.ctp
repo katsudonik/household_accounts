@@ -41,3 +41,7 @@
 <div id="chart_all"></div>
 
 <?php echo $this->Html->script('graph'); ?>
+<script>
+aggregate_c3_item();
+aggregate_c3_all();
+</script>

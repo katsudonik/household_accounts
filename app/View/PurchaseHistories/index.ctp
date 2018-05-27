@@ -134,3 +134,4 @@
 
 
 <?php echo $this->Html->script('graph'); ?>
+<script>aggregate_c3();</script>
