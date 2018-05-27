@@ -1,4 +1,4 @@
-<div class=" index">
+<div>
 	<?php echo $this->Html->script('home'); ?>
 
 	<?php
@@ -20,7 +20,7 @@
 	</div>
 </div>
 
-<div class="purchaseHistories index">
+<div>
 	<h2><?php echo __('Purchase Histories'); ?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<thead>
@@ -70,7 +70,7 @@
 	</table>
 
 </div>
-<div class="purchaseHistories index">
+<div>
 	<h2>Aggregation</h2>
 	<table cellpadding="0" cellspacing="0">
 	<thead>
@@ -134,7 +134,3 @@
 
 
 <?php echo $this->Html->script('graph'); ?>
-
-
-
-
