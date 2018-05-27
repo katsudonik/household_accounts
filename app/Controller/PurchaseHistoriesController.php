@@ -56,8 +56,9 @@ class PurchaseHistoriesController extends AppController {
 	// TODO
 	public function aggregate_index(){
 	    $this->PurchaseHistory->recursive = 0;
-	    // TODO where this year
-	    $aggregateItemHistories = $this->Item->aggregate_monthly_purchase_by_item([], ['name', 'price',]);
+
+	    $year = $this->_param('y', date('Y'));
+	    $aggregateItemHistories = $this->Item->aggregate_monthly_purchase_by_item(Query::conditions_this_year('purchase_date', $year), ['name', 'price',]);
 	    $this->set('aggregateItemHistories', $aggregateItemHistories);
 	    $this->set('aggregateSumHistory', $this->Item->aggregate_monthly_purchase($aggregateItemHistories));
 
@@ -65,8 +66,9 @@ class PurchaseHistoriesController extends AppController {
 
 	public function aggregate_c3_item(){
 	    $this->RequestHandler->renderAs($this, 'json');
-	    // TODO where this year
-	    $aggregateItemHistories = $this->Item->aggregate_monthly_purchase_by_item([], ['name', 'price',]);
+
+	    $year = $this->_param('y', date('Y'));
+	    $aggregateItemHistories = $this->Item->aggregate_monthly_purchase_by_item(Query::conditions_this_year('purchase_date', $year), ['name', 'price',]);
 	    $this->set('aggregateItemHistories', $aggregateItemHistories);
 
 	    $this->set(array(
@@ -79,8 +81,8 @@ class PurchaseHistoriesController extends AppController {
 	public function aggregate_c3_all() {
 	    $this->RequestHandler->renderAs($this, 'json');
 
-	    $start = strtotime(date('Y-m') . '-01 -1 year');
-	    $end = strtotime(date('Y-m') . '-01');
+	    $start = strtotime(date('Y') . '-01-01');
+	    $end = strtotime(date('Y') . '-12-01');
 	    $ret = $this->range_month($start, $end);
 
 	    $prices = [];
