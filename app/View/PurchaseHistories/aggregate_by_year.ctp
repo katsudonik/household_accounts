@@ -1,4 +1,24 @@
 <div>
+	<?php echo $this->Html->script('home'); ?>
+
+	<?php
+		$start = strtotime(date('Y') . '-01-01 -5 year');
+		$end = strtotime(date('Y') . '-01-01');
+
+		$ret=array();
+		$tmp = $end;
+		while($tmp >= $start){
+		  $ret[(date('Y', $tmp))] = date('Y', $tmp);
+		  $tmp = strtotime('-1 year', $tmp);
+		}
+	?>
+	<div class="select_ym">
+		<span>
+			<?php  echo $this->Form->input('Display Year', ['type'=>'select', 'options'=> $ret, 'selected' => isset($_GET['y']) ? $_GET['y'] : date('Y'), 'class' => 'y_aggs']);?>
+    	</span>
+	</div>
+</div>
+<div>
 	<h2>Aggregation</h2>
 	<table cellpadding="0" cellspacing="0">
 	<thead>
