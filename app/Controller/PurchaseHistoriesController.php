@@ -2,6 +2,7 @@
 App::uses('AppController', 'Controller');
 App::uses('PurchaseHistory', 'Model');
 App::uses('Item', 'Model');
+App::uses('Query', 'Utility');
 
 /**
  * PurchaseHistories Controller
@@ -31,9 +32,10 @@ class PurchaseHistoriesController extends AppController {
  */
 	public function index() {
 		$this->PurchaseHistory->recursive = 0;
-		$ym = $this->request->query('ym') ? $this->request->query('ym') : date('Y-m');
-		$this->set('purchaseHistories', $this->PurchaseHistory->find_monthly($ym));
-		$aggregateItemHistories = $this->Item->aggregate_monthly_purchase_by_item($ym);
+		$ym = $this->_param('ym', date('Y-m'));
+		$this->set('purchaseHistories', $this->PurchaseHistory->find_monthly(Query::conditions_this_month('purchase_date', $ym)));
+
+		$aggregateItemHistories = $this->Item->aggregate_monthly_purchase_by_item(Query::conditions_this_month('purchase_date', $ym));
 		$this->set('aggregateItemHistories', $aggregateItemHistories);
 		$this->set('aggregateSumHistory', $this->Item->aggregate_monthly_purchase($aggregateItemHistories));
 		$this->set('ym', $ym);
@@ -41,8 +43,9 @@ class PurchaseHistoriesController extends AppController {
 
 	public function aggregate_c3() {
 	    $this->RequestHandler->renderAs($this, 'json');
-	    $ym = $this->request->query('ym') ? $this->request->query('ym') : date('Y-m');
-	    $aggregateItemHistories = $this->Item->aggregate_monthly_purchase_by_item($ym);
+
+	    $ym = $this->_param('ym', date('Y-m'));
+	    $aggregateItemHistories = $this->Item->aggregate_monthly_purchase_by_item(Query::conditions_this_month('purchase_date', $ym));
 
 	    $this->set(array(
 	        'aggregateItemHistories' => $aggregateItemHistories,
@@ -53,8 +56,8 @@ class PurchaseHistoriesController extends AppController {
 	// TODO
 	public function aggregate_index(){
 	    $this->PurchaseHistory->recursive = 0;
-	    //
-	    $aggregateItemHistories = $this->Item->aggregate_monthly_purchase_by_item(null, ['name', 'price',]);
+	    // TODO where this year
+	    $aggregateItemHistories = $this->Item->aggregate_monthly_purchase_by_item([], ['name', 'price',]);
 	    $this->set('aggregateItemHistories', $aggregateItemHistories);
 	    $this->set('aggregateSumHistory', $this->Item->aggregate_monthly_purchase($aggregateItemHistories));
 
@@ -62,7 +65,8 @@ class PurchaseHistoriesController extends AppController {
 
 	public function aggregate_c3_item(){
 	    $this->RequestHandler->renderAs($this, 'json');
-	    $aggregateItemHistories = $this->Item->aggregate_monthly_purchase_by_item(null, ['name', 'price',]);
+	    // TODO where this year
+	    $aggregateItemHistories = $this->Item->aggregate_monthly_purchase_by_item([], ['name', 'price',]);
 	    $this->set('aggregateItemHistories', $aggregateItemHistories);
 
 	    $this->set(array(
@@ -81,7 +85,7 @@ class PurchaseHistoriesController extends AppController {
 
 	    $prices = [];
 	    foreach($ret as $ym){
-	        $aggregateItemHistories = $this->Item->aggregate_monthly_purchase_by_item($ym);
+	        $aggregateItemHistories = $this->Item->aggregate_monthly_purchase_by_item(Query::conditions_this_month('purchase_date', $ym));
 	        $namesPrice = Hash::combine($aggregateItemHistories, '{n}.name', '{n}.price');
 
 	        foreach($namesPrice as $name => $price){
@@ -100,6 +104,11 @@ class PurchaseHistoriesController extends AppController {
 	    ));
 	}
 
+
+	private function _param($key, $default){
+	    $ym = $this->request->query($key);
+	    return $ym ? $ym : $default;
+	}
 
 	private function range_month($start, $end)
 	{

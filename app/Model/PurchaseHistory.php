@@ -63,10 +63,10 @@ class PurchaseHistory extends AppModel {
 	);
 
 
-	public function find_monthly($ym)
+	public function find_monthly($conditions)
     {
        return $this->find('all', [
-            'conditions' => $this->conditions_this_month($ym)
+           'conditions' => $conditions
         ]);
     }
 
