@@ -46,15 +46,15 @@
 		</td>
 		<td>
 			<span><?php echo $this->Html->link($purchaseHistory['Item']['name'], array('controller' => 'items', 'action' => 'view', $purchaseHistory['Item']['id'])); ?></span>
-			<?php echo $this->Form->input('item_id', ['selected' => $purchaseHistory['PurchaseHistory']['item_id'], 'name' => 'data[PurchaseHistory][item_id][]']); ?>
+			<?php echo $this->Form->input('item_id', ['selected' => $purchaseHistory['PurchaseHistory']['item_id'], 'name' => 'data[PurchaseHistory][item_id][]', 'class' => 'item_name']); ?>
 		</td>
 		<td class="purchase_date" >
 			<span><?php echo h($purchaseHistory['PurchaseHistory']['purchase_date']); ?></span>
-			<?php echo $this->Form->input('purchase_date', array('type' => 'text', 'id' => "datepicker_{$i}", 'value' => h($purchaseHistory['PurchaseHistory']['purchase_date']), 'name' => 'data[PurchaseHistory][purchase_date][]')); ?>
+			<?php echo $this->Form->input('purchase_date', array('type' => 'text', 'id' => "datepicker_{$i}", 'value' => h($purchaseHistory['PurchaseHistory']['purchase_date']), 'name' => 'data[PurchaseHistory][purchase_date][]', 'class' => 'date')); ?>
 		</td>
 		<td class="price" >
 			<span><?php echo h($purchaseHistory['PurchaseHistory']['price']);?></span>
-			 <?php echo $this->Form->input('price', ['value' => h($purchaseHistory['PurchaseHistory']['price']), 'name' => 'data[PurchaseHistory][price][]']);?>
+			 <?php echo $this->Form->input('price', ['type' => 'text', 'value' => h($purchaseHistory['PurchaseHistory']['price']), 'name' => 'data[PurchaseHistory][price][]', 'class' => 'price', 'maxlength' => '7']);?>
 		</td>
 		<td>
 			<span><?php echo h($purchaseHistory['PurchaseHistory']['memo']); ?></span>
@@ -99,3 +99,16 @@ foreach($purchaseHistories as $i => $data){
 
 });
 </script>
+
+<style>
+.price{
+    width: 110px;
+}
+.item_name{
+    height:29px;
+    width: 80px;
+}
+.date{
+    width: 130px;
+}
+</style>
