@@ -13,6 +13,7 @@ $(function(){
 
 	$('.cancel').hide();
 	$('.submit').hide();
+	$('.item_id_before').hide();
 
 	$('._edit').on('click',function(){
 		$tr = $(this).closest('tr');
@@ -28,7 +29,16 @@ $(function(){
 	$('.cancel').on('click',function(){
 		$tr = $(this).closest('tr');
 		$tr.find('span').show();
+		$('.item_id_before').hide();
 		$tr.find('input').hide();
+
+		$tr.find('input').each(function(i){
+			$(this).val($(this).prev('span').text());
+		});
+		$tr.find('select').each(function(i){
+			$(this).val($(this).prev('span').find('.item_id_before').text());
+		});
+
 		$tr.find('select').hide();
 		$tr.find('.submit').hide();
 		$tr.find('._edit').show();
@@ -38,11 +48,6 @@ $(function(){
 
 	$('.submit').on('click',function(){
 		$(this).closest('form').submit();
-		$tr = $(this).closest('tr');
-		$tr.find('input').each(function(i){
-			console.log($(this).val());
-		});
-
 	});
 
 
