@@ -45,11 +45,8 @@ class PurchaseHistoriesController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->PurchaseHistory->recursive = 0;
-		$ym = $this->_param('ym', date('Y-m'));
-		$this->set('purchaseHistories', $this->PurchaseHistory->find_monthly(Query::conditions_this_month('purchase_date', $ym)));
-		$this->set('ym', $ym);
-	}
+		$this->_index();
+    }
 
 	public function aggregate_c3() {
 	    $ym = $this->_param('ym', date('Y-m'));
@@ -135,6 +132,15 @@ class PurchaseHistoriesController extends AppController {
 	    }
 	    return $ret;
 	}
+
+	private function _index()
+	{
+	    $ym = $this->_param('ym', date('Y-m'));
+	    $this->set('purchaseHistories', $this->PurchaseHistory->find_monthly(Query::conditions_this_month('purchase_date', $ym)));
+	    $this->set('ym', $ym);
+	    $items = $this->PurchaseHistory->Item->find('list');
+	    $this->set(compact('items'));
+	}
 /**
  * view method
  *
@@ -193,6 +199,19 @@ class PurchaseHistoriesController extends AppController {
 		}
 		$items = $this->PurchaseHistory->Item->find('list');
 		$this->set(compact('items'));
+	}
+
+
+	public function bulk_edit() {
+	    if ($this->request->is(array('post', 'put'))) {
+    	    $keys = array_keys($this->request->data('PurchaseHistory'));
+    	    foreach($this->request->data('PurchaseHistory.id') as $i => $v){
+    	        $records[$i] = array_combine($keys, Hash::extract($this->request->data('PurchaseHistory'), "{s}.{$i}"));
+    	    }
+    	    $this->PurchaseHistory->saveAll($records);
+	    }
+	    $this->_index();
+	    $this->render('index');
 	}
 
 /**

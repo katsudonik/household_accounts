@@ -42,7 +42,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	?>
 
 
-	 <script>$(function() {$('.datepicker').datepicker({dateFormat: 'yy-mm-dd'});});</script>
+	 <script>$(function() {$('#datepicker').datepicker({dateFormat: 'yy-mm-dd'});});</script>
 
 	<link href="/css/lib/c3/c3.css" rel="stylesheet">
 	<script src="/js/lib/c3/c3.js"></script>
