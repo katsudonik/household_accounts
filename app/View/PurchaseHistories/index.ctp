@@ -28,12 +28,12 @@
 	<table cellpadding="0" cellspacing="0">
 	<thead>
 	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('item_id'); ?></th>
-			<th><?php echo $this->Paginator->sort('purchase_date'); ?></th>
-			<th><?php echo $this->Paginator->sort('price'); ?></th>
-			<th><?php echo $this->Paginator->sort('memo'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
+			<th><b>id</b></th>
+			<th><b>item_id</b></th>
+			<th><b>purchase_date</b></th>
+			<th><b>price</b></th>
+			<th><b>memo</b></th>
+			<th class="actions"><b>Actions</b></th>
 	</tr>
 	</thead>
 	<tbody>
