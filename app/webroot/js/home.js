@@ -24,6 +24,7 @@ $(function(){
 		$tr.find('.submit').show();
 		$tr.find('.delete').hide();
 		$(this).hide();
+		$tr.find('.price').focus();
 	});
 
 	$('.cancel').on('click',function(){
