@@ -31,5 +31,13 @@ App::uses('Controller', 'Controller');
  * @link		https://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
+    public $helpers = array(
+        'Form',
+        'Html' => array(
+            'className' => 'MyHtml',
+        ),
+        'Js',
+        'Time'
+        );
 }
 ////

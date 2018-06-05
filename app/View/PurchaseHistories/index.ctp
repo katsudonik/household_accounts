@@ -14,29 +14,30 @@
 	?>
 	<div class="select_ym">
 		<span>
-			<?php  echo $this->Form->input('Display Month', ['type'=>'select', 'options'=> $ret, 'selected' => isset($_GET['ym']) ? $_GET['ym'] : date('Y-m'), 'class' => 'ym']);?>
+			<?php  echo $this->Form->input('Display_Month', ['type'=>'select', 'options'=> $ret, 'selected' => isset($_GET['ym']) ? $_GET['ym'] : date('Y-m'), 'class' => 'ym']);?>
     	</span>
     	<input type="hidden" class="ym" value="<?php echo $ym; ?>">
 	</div>
 </div>
 
 <div>
-	<h2><?php echo __('Purchase Histories'); ?></h2>
+	<h2 class="trn"><?php echo __('Purchase_Histories'); ?></h2>
 	<?php echo $this->Form->create('PurchaseHistory',[
 	    'url' => array('controller' => 'purchase_histories', 'action' => 'bulk_edit'),
 	    'inputDefaults' => ['label' => false,'div' => false,'style' => 'display:none;']]);?>
 	<table cellpadding="0" cellspacing="0">
 	<thead>
 	<tr>
-			<th><b>id</b></th>
-			<th><b>item_id</b></th>
-			<th><b>purchase_date</b></th>
-			<th><b>price</b></th>
-			<th><b>memo</b></th>
-			<th class="actions"><b>Actions</b></th>
+			<th style="width:15px;"><b class="trn">id</b></th>
+			<th style="width:85px;"><b class="trn">item_name</b></th>
+			<th style="width:136px;"><b class="trn">purchase_date</b></th>
+			<th style="width:38px;"><b class="trn">price</b></th>
+			<th style="width:250px;"><b class="trn">memo</b></th>
+			<th class="actions"><b class="trn">Actions</b></th>
 	</tr>
 	</thead>
 	<tbody>
+
 	<?php foreach ($purchaseHistories as $i => $purchaseHistory): ?>
 	<tr>
 
@@ -60,10 +61,10 @@
 			<span><?php echo h($purchaseHistory['PurchaseHistory']['memo']); ?></span>
 			<?php echo $this->Form->input('memo', ['value' => h($purchaseHistory['PurchaseHistory']['memo']), 'name' => 'data[PurchaseHistory][memo][]']);?>
 		</td>
-		<td class="actions">
-			<a class="_edit" href="javascript:void(0)">Edit</a>
-			<a class="cancel" href="javascript:void(0)">Cancel</a>
-			<a class="submit" href="javascript:void(0)">Submit</a>
+		<td class="actions"  style="text-align: left">
+			<a class="_edit trn" href="javascript:void(0)">Edit</a>
+			<a class="cancel trn" href="javascript:void(0)">Cancel</a>
+			<a class="submit trn" href="javascript:void(0)">Submit</a>
 			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $purchaseHistory['PurchaseHistory']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $purchaseHistory['PurchaseHistory']['id']), 'class' => 'delete')); ?>
 		</td>
 	</tr>
