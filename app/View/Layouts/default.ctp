@@ -36,8 +36,9 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
+		echo $this->Html->script('jquery.translate');
+		echo $this->Html->script('translate');
 		echo $this->fetch('script');
-
 		echo $this->Html->script('dropdown');
 	?>
 
@@ -60,6 +61,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			<?php echo $this->fetch('content'); ?>
 		</div>
 		<div id="footer">
+		<ul>
+<li><a class="lang_selector trn" href="#" data-value="jp">日本語に翻訳</a></li>
+<li><a class="lang_selector trn" href="#" data-value="en">英語に翻訳</a></li>
+</ul>
 		</div>
 	</div>
 	<?php echo $this->element('sql_dump'); ?>
