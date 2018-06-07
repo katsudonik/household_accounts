@@ -44,6 +44,10 @@ $(function() {
         jp: "予算",
         en: "Budgets"
     },
+    Aggregation: {
+        jp: "集計",
+        en: "Aggregation"
+    },
     Aggregates: {
         jp: "集計",
         en: "Aggregates"

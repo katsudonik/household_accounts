@@ -22,7 +22,7 @@
 
 
 <div>
-	<h2>Aggregation</h2>
+	<h2 class="trn">Aggregation</h2>
 	<table cellpadding="0" cellspacing="0">
 	<thead>
 	<tr>

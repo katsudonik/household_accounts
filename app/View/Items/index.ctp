@@ -1,5 +1,5 @@
 <div>
-	<h2><?php echo __('Items'); ?></h2>
+	<h2 class="trn"><?php echo __('Items'); ?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<thead>
 	<tr>
