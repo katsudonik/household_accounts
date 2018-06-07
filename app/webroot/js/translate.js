@@ -16,6 +16,10 @@ $(function() {
         jp: "月",
         en: "Month"
     },
+    Display_Year: {
+        jp: "表示年",
+        en: "Display Year"
+    },
     Display_Month: {
         jp: "表示月",
         en: "Display Month"

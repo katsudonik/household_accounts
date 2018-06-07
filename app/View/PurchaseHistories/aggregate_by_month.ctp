@@ -14,7 +14,7 @@
 	?>
 	<div class="select_ym">
 		<span>
-			<?php  echo $this->Form->input('Display Month', ['type'=>'select', 'options'=> $ret, 'selected' => isset($_GET['ym']) ? $_GET['ym'] : date('Y-m'), 'class' => 'ym_aggs']);?>
+			<?php  echo $this->Form->input('Display_Month', ['type'=>'select', 'options'=> $ret, 'selected' => isset($_GET['ym']) ? $_GET['ym'] : date('Y-m'), 'class' => 'ym_aggs']);?>
     	</span>
     	<input type="hidden" class="ym" value="<?php echo $ym; ?>">
 	</div>
