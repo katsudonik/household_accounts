@@ -30,7 +30,7 @@
 			<th><?php echo $this->Paginator->sort('budget_price'); ?></th>
 			<th><?php echo $this->Paginator->sort('price'); ?></th>
 			<th><?php echo $this->Paginator->sort('remain'); ?></th>
-			<th><?php echo 'chart'; ?></th>
+			<th class="trn"><?php echo 'chart'; ?></th>
 	</tr>
 	</thead>
 	<tbody>

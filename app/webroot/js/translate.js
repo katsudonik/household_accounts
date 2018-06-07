@@ -8,6 +8,14 @@ $(function() {
       jp: "新規登録",
       en: "New"
     },
+    Year: {
+        jp: "年",
+        en: "Year"
+    },
+    Month: {
+        jp: "月",
+        en: "Month"
+    },
     Display_Month: {
         jp: "表示月",
         en: "Display Month"
@@ -23,6 +31,10 @@ $(function() {
     Items: {
         jp: "項目",
         en: "Items"
+    },
+    Item: {
+        jp: "項目",
+        en: "Item"
     },
     Budgets: {
         jp: "予算",
@@ -48,13 +60,29 @@ $(function() {
         jp: "削除",
         en: "Delete"
     },
+    item_id: {
+        jp: "項目",
+        en: "item_id"
+    },
     item_name: {
-        jp: "項目名",
+        jp: "項目",
         en: "item_name"
+    },
+    name: {
+        jp: "項目",
+        en: "name"
+    },
+    Name: {
+        jp: "項目",
+        en: "Name"
     },
     purchase_date: {
         jp: "購入日",
         en: "purchase_date"
+    },
+    Price: {
+        jp: "金額",
+        en: "Price"
     },
     price: {
         jp: "金額",
@@ -67,6 +95,19 @@ $(function() {
     Actions: {
         jp: "操作",
         en: "Actions"
+    },
+
+    Budget_Price: {
+        jp: "予算",
+        en: "Budget_Price"
+    },
+    remain: {
+        jp: "残額",
+        en: "remain"
+    },
+    chart: {
+        jp: "グラフ",
+        en: "chart"
     },
   };
 
