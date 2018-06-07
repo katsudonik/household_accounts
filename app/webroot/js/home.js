@@ -1,5 +1,8 @@
 
 $(function(){
+
+
+
 	$('.ym').change(function() {
 		location.href = "/purchase_histories/?ym=" + $(this).val();;
 	});
@@ -14,6 +17,7 @@ $(function(){
 	$('.cancel').hide();
 	$('.submit').hide();
 	$('.item_id_before').hide();
+	$('._id').show();
 
 	$('._edit').on('click',function(){
 		$tr = $(this).closest('tr');
@@ -47,6 +51,24 @@ $(function(){
 		$(this).hide();
 	});
 
+	$('.delete').on('click',function(){
+		$tr = $(this).closest('tr');
+	    $.ajax({
+	        url:'/purchase_histories/delete_ajax',
+	        type:'POST',
+	        data:{
+	        	'id' : $(this).data('id'),
+	        }
+	    })
+	    .done( (data) => {
+	        console.log(data);
+	        $tr.hide();
+	    })
+	    .fail( (data) => {
+	        console.log(data);
+	    });
+	});
+
 	$('.submit').on('click',function(){
 		$(this).closest('form').submit();
 	});
@@ -56,6 +78,8 @@ $(function(){
 			$(this).closest('form').submit();
 		}
 	});
+
+
 });
 
 

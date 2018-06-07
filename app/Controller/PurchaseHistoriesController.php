@@ -29,6 +29,7 @@ class PurchaseHistoriesController extends AppController {
 	    'aggregate_c3',
 	    'aggregate_c3_item',
 	    'aggregate_c3_all',
+	    'delete_ajax',
 	];
 
 	public function beforeFilter() {
@@ -117,7 +118,7 @@ class PurchaseHistoriesController extends AppController {
 	}
 
 
-	private function _param($key, $default){
+	private function _param($key, $default = null){
 	    $ym = $this->request->query($key);
 	    return $ym ? $ym : $default;
 	}
@@ -221,17 +222,18 @@ class PurchaseHistoriesController extends AppController {
  * @param string $id
  * @return void
  */
-	public function delete($id = null) {
-		$this->PurchaseHistory->id = $id;
+	public function delete_ajax() {
+	    $this->PurchaseHistory->id = $this->request->data('id');
 		if (!$this->PurchaseHistory->exists()) {
 			throw new NotFoundException(__('Invalid purchase history'));
 		}
 		$this->request->allowMethod('post', 'delete');
 		if ($this->PurchaseHistory->delete()) {
-			$this->Flash->success(__('The purchase history has been deleted.'));
 		} else {
-			$this->Flash->error(__('The purchase history could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
+		$this->set(array(
+		    '_serialize' => array()
+		));
+
 	}
 }

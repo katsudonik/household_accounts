@@ -43,7 +43,7 @@
 
 		<td>
 			<?php echo $this->Html->link(__(h($purchaseHistory['PurchaseHistory']['id'])), array('action' => 'view', $purchaseHistory['PurchaseHistory']['id'])); ?>
-			<?php echo $this->Form->input('id', ['value' => h($purchaseHistory['PurchaseHistory']['id']), 'name' => 'data[PurchaseHistory][id][]']); ?>
+			<?php echo $this->Form->input('id', ['value' => h($purchaseHistory['PurchaseHistory']['id']), 'name' => 'data[PurchaseHistory][id][]', 'class' => '_id']); ?>
 		</td>
 		<td>
 			<span><span class="item_id_before"><?php echo $purchaseHistory['PurchaseHistory']['item_id']; ?></span><?php echo $this->Html->link($purchaseHistory['Item']['name'], array('controller' => 'items', 'action' => 'view', $purchaseHistory['Item']['id'])); ?></span>
@@ -65,7 +65,7 @@
 			<a class="_edit trn" href="javascript:void(0)">Edit</a>
 			<a class="cancel trn" href="javascript:void(0)">Cancel</a>
 			<a class="submit trn" href="javascript:void(0)">Submit</a>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $purchaseHistory['PurchaseHistory']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $purchaseHistory['PurchaseHistory']['id']), 'class' => 'delete')); ?>
+			<a class="delete trn" href="javascript:void(0)" data-id="<?php echo h($purchaseHistory['PurchaseHistory']['id']) ?>">Delete</a>
 		</td>
 	</tr>
 <?php endforeach; ?>
