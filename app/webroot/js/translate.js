@@ -1,5 +1,13 @@
 $(function() {
   var t = {
+	Japanese: {
+      jp: "日本語",
+      en: "Japanese"
+    },
+    English: {
+	      jp: "英語",
+	      en: "English"
+	},
 	List: {
       jp: "一覧",
       en: "List"

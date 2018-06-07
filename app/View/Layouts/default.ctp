@@ -21,7 +21,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 <html>
 <head>
 	<?php echo $this->Html->charset(); ?>
-	<title class"trn">
+	<title>
 		<?php $this->assign('title', '家計簿'); ?>
 		<?php echo $this->fetch('title'); ?>
 	</title>
@@ -62,8 +62,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		</div>
 		<div id="footer">
 		<ul>
-<li><a class="lang_selector trn" href="#" data-value="jp">日本語に翻訳</a></li>
-<li><a class="lang_selector trn" href="#" data-value="en">英語に翻訳</a></li>
+<li><a class="lang_selector trn" href="#" data-value="jp">Japanese</a> | <a class="lang_selector trn" href="#" data-value="en">English</a></li>
 </ul>
 		</div>
 	</div>
