@@ -30,4 +30,14 @@ App::uses('Helper', 'View');
  * @package       app.View.Helper
  */
 class AppHelper extends Helper {
+
+    private $defaultCssClass = array(
+        'trn',
+    );
+
+    public function mergeDefaultCssClass(&$options) {
+        $classes = isset($options['class']) ? explode(" ", $options['class']) : array();
+        $options['class'] = array_unique(array_merge($classes, $this->defaultCssClass));
+    }
+
 }

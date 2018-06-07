@@ -32,7 +32,9 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
     public $helpers = array(
-        'Form',
+        'Form' => array(
+            'className' => 'MyForm',
+        ),
         'Html' => array(
             'className' => 'MyHtml',
         ),
