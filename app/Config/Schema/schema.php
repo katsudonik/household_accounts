@@ -14,8 +14,6 @@ class AppSchema extends CakeSchema {
 		'price' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 8, 'unsigned' => false),
 		'created' => array('type' => 'datetime', 'null' => true, 'default' => null),
 		'modified' => array('type' => 'datetime', 'null' => true, 'default' => null),
-		'dalete_flag' => array('type' => 'boolean', 'null' => true, 'default' => null),
-		'daleted' => array('type' => 'datetime', 'null' => true, 'default' => null),
 		'indexes' => array(
 			'PRIMARY' => array('column' => 'id', 'unique' => 1),
 			'item_id' => array('column' => 'item_id', 'unique' => 0)
@@ -25,14 +23,13 @@ class AppSchema extends CakeSchema {
 
 	public $items = array(
 		'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false, 'key' => 'primary'),
-		'name' => array('type' => 'string', 'null' => false, 'default' => null, 'key' => 'index', 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
+		'name' => array('type' => 'string', 'null' => false, 'default' => null, 'key' => 'unique', 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'created' => array('type' => 'datetime', 'null' => true, 'default' => null),
 		'modified' => array('type' => 'datetime', 'null' => true, 'default' => null),
-		'dalete_flag' => array('type' => 'boolean', 'null' => true, 'default' => null),
-		'daleted' => array('type' => 'datetime', 'null' => true, 'default' => null),
+		'type' => array('type' => 'integer', 'null' => true, 'default' => null, 'length' => 1, 'unsigned' => false),
 		'indexes' => array(
 			'PRIMARY' => array('column' => 'id', 'unique' => 1),
-			'name' => array('column' => array('name', 'dalete_flag'), 'unique' => 1)
+			'name' => array('column' => 'name', 'unique' => 1)
 		),
 		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
 	);
@@ -45,8 +42,6 @@ class AppSchema extends CakeSchema {
 		'memo' => array('type' => 'string', 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'created' => array('type' => 'datetime', 'null' => true, 'default' => null),
 		'modified' => array('type' => 'datetime', 'null' => true, 'default' => null),
-		'dalete_flag' => array('type' => 'boolean', 'null' => true, 'default' => null),
-		'daleted' => array('type' => 'datetime', 'null' => true, 'default' => null),
 		'indexes' => array(
 			'PRIMARY' => array('column' => 'id', 'unique' => 1),
 			'item_id' => array('column' => 'item_id', 'unique' => 0)
