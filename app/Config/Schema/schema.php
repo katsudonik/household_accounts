@@ -44,7 +44,8 @@ class AppSchema extends CakeSchema {
 		'modified' => array('type' => 'datetime', 'null' => true, 'default' => null),
 		'indexes' => array(
 			'PRIMARY' => array('column' => 'id', 'unique' => 1),
-			'item_id' => array('column' => 'item_id', 'unique' => 0)
+			'item_id_idx' => array('column' => 'item_id', 'unique' => 0),
+			'item_id_p_idx' => array('column' => 'item_id', 'unique' => 0)
 		),
 		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
 	);
