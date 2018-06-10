@@ -11,10 +11,10 @@
             <li><?php echo $this->Html->link(__('New'), array('controller' => 'items', 'action' => 'add'), array('class'=> 'trn')); ?> </li>
         </ul>
     </li>
-    <li><span class="trn">Budgets</span>
+    <li><span class="trn">Purchase_Schedules</span>
         <ul class="child">
-              <li><?php echo $this->Html->link(__('List'), array('controller' => 'budgets', 'action' => 'index'), array('class'=> 'trn')); ?> </li>
-            <li><?php echo $this->Html->link(__('New'), array('controller' => 'budgets', 'action' => 'add'), array('class'=> 'trn')); ?> </li>
+              <li><?php echo $this->Html->link(__('List'), array('controller' => 'purchase_schedules', 'action' => 'index'), array('class'=> 'trn')); ?> </li>
+            <li><?php echo $this->Html->link(__('New'), array('controller' => 'purchase_schedules', 'action' => 'add'), array('class'=> 'trn')); ?> </li>
         </ul>
     </li>
     <li><span class="trn">Aggregates</span>
