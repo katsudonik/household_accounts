@@ -14,9 +14,8 @@
 	?>
 	<div class="select_ym">
 		<span>
-			<?php  echo $this->Form->input('Display_Month', ['type'=>'select', 'options'=> $ret, 'selected' => isset($_GET['ym']) ? $_GET['ym'] : date('Y-m')]);?>
+			<?php  echo $this->Form->input('Display_Month', ['class' => 'change_ym', 'type'=>'select', 'options'=> $ret, 'selected' => isset($_GET['ym']) ? $_GET['ym'] : date('Y-m')]);?>
     	</span>
-    	<input type="hidden" class="ym" value="<?php echo $ym; ?>">
 	</div>
 </div>
 
@@ -47,7 +46,7 @@
 		</td>
 		<td>
 			<span><span class="item_id_before"><?php echo $purchaseHistory['PurchaseHistory']['item_id']; ?></span><?php echo $this->Html->link($purchaseHistory['Item']['name'], array('controller' => 'items', 'action' => 'view', $purchaseHistory['Item']['id'])); ?></span>
-			<?php echo $this->Form->input('item_id', ['selected' => $purchaseHistory['PurchaseHistory']['item_id'], 'name' => 'data[PurchaseHistory][item_id][]', 'class' => 'item_name']); ?>
+			<?php echo $this->Form->input('item_id', ['selected' => $purchaseHistory['PurchaseHistory']['item_id'], 'name' => 'data[PurchaseHistory][item_id][]', 'class' => 'item_name', 'label' => false,]); ?>
 		</td>
 		<td class="purchase_date" >
 			<span><?php echo h($purchaseHistory['PurchaseHistory']['purchase_date']); ?></span>

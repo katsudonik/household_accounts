@@ -1,4 +1,6 @@
 $(function() {
+  $('label').addClass('trn');
+
   var t = {
 	Japanese: {
       jp: "日本語",

@@ -3,7 +3,7 @@ $(function(){
 
 
 
-	$('.ym').change(function() {
+	$('.change_ym').change(function() {
 		location.href = "/purchase_histories/?ym=" + $(this).val();;
 	});
 	$('.ym_aggs').change(function() {
