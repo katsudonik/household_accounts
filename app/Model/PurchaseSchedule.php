@@ -54,6 +54,11 @@ class PurchaseSchedule extends AppModel {
 
 
 	public function save($data = null, $validate = true, $fieldList = []){
+	    if(empty($data['PurchaseSchedule']['target_start_date'])
+	        && empty($data['PurchaseSchedule']['target_date'])){
+            return false;
+	    }
+
 	    $result = parent::save($data, $validate, $fieldList);
 	    if(!$result){
 	        return false;
