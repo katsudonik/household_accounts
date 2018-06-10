@@ -1,3 +1,4 @@
+<?php echo $this->Html->script('home'); ?>
 <?php echo $this->element('term_selector', ['url' => '/purchase_histories/?ym=']); ?>
 
 <div>
