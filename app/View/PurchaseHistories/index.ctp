@@ -31,6 +31,8 @@
 			<th style="width:85px;"><b class="trn">item_name</b></th>
 			<th style="width:136px;"><b class="trn">purchase_date</b></th>
 			<th style="width:38px;"><b class="trn">price</b></th>
+			<th style="width:250px;"><b class="trn">store_name</b></th>
+			<th style="width:250px;"><b class="trn">purchases</b></th>
 			<th style="width:250px;"><b class="trn">memo</b></th>
 			<th class="actions"><b class="trn">Actions</b></th>
 	</tr>
@@ -57,6 +59,14 @@
 			 <?php echo $this->Form->input('price', ['type' => 'text', 'value' => h($purchaseHistory['PurchaseHistory']['price']), 'name' => 'data[PurchaseHistory][price][]', 'class' => 'price', 'maxlength' => '7']);?>
 		</td>
 		<td>
+			<span><?php echo h($purchaseHistory['PurchaseHistory']['store_name']); ?></span>
+			<?php echo $this->Form->input('store_name', ['value' => h($purchaseHistory['PurchaseHistory']['store_name']), 'name' => 'data[PurchaseHistory][store_name][]']);?>
+		</td>
+		<td>
+			<span><?php echo h($purchaseHistory['PurchaseHistory']['purchases']); ?></span>
+			<?php echo $this->Form->input('purchases', ['value' => h($purchaseHistory['PurchaseHistory']['purchases']), 'name' => 'data[PurchaseHistory][purchases][]']);?>
+		</td>
+		<td>
 			<span><?php echo h($purchaseHistory['PurchaseHistory']['memo']); ?></span>
 			<?php echo $this->Form->input('memo', ['value' => h($purchaseHistory['PurchaseHistory']['memo']), 'name' => 'data[PurchaseHistory][memo][]']);?>
 		</td>
@@ -71,6 +81,10 @@
 <tr>
 	<td>
 		<?php echo $this->Html->link(__('+'), array('action' => 'add')); ?>
+	</td>
+	<td>
+	</td>
+	<td>
 	</td>
 	<td>
 	</td>
