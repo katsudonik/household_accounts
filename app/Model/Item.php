@@ -70,7 +70,7 @@ class Item extends AppModel {
 	    'remain' => 'CASE WHEN PurchaseHistory.price IS NULL THEN Budget.price ELSE  Budget.price - SUM(PurchaseHistory.price) END',
 	);
 
-	public function aggregate_monthly_purchase_by_item($conditions, $fields = [
+	public function aggregate_purchase($conditions, $fields = [
 	    'name',
 	    'budget_id',
 	    'budget_price',
