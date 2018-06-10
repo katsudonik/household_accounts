@@ -34,13 +34,17 @@ $(function() {
         jp: "表示月",
         en: "Display Month"
     },
-    Purchase_History: {
-        jp: "購入履歴",
-        en: "Purchase History"
-    },
     Purchase_Histories: {
         jp: "購入履歴",
         en: "Purchase Histories"
+    },
+    Income_Histories: {
+        jp: "収入履歴",
+        en: "Income Histories"
+    },
+    Income_Schedules: {
+        jp: "収入予定",
+        en: "Income Schedules"
     },
     Items: {
         jp: "項目",
@@ -51,7 +55,7 @@ $(function() {
         en: "Item"
     },
     Purchase_Schedules: {
-        jp: "予算",
+        jp: "購入予定",
         en: "Purchase_Schedules"
     },
     Aggregation: {
