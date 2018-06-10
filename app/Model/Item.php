@@ -59,7 +59,33 @@ class Item extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
-		)
+		),
+	    'IncomeSchedule' => array(
+	        'className' => 'IncomeSchedule',
+	        'foreignKey' => 'item_id',
+	        'dependent' => false,
+	        'conditions' => '',
+	        'fields' => '',
+	        'order' => '',
+	        'limit' => '',
+	        'offset' => '',
+	        'exclusive' => '',
+	        'finderQuery' => '',
+	        'counterQuery' => ''
+	    ),
+	    'IncomeHistory' => array(
+	        'className' => 'IncomeHistory',
+	        'foreignKey' => 'item_id',
+	        'dependent' => false,
+	        'conditions' => '',
+	        'fields' => '',
+	        'order' => '',
+	        'limit' => '',
+	        'offset' => '',
+	        'exclusive' => '',
+	        'finderQuery' => '',
+	        'counterQuery' => ''
+	    )
 	);
 
 	private $_virtualFields = array(
@@ -161,6 +187,7 @@ class Item extends AppModel {
 	    return $records;
 
 	}
+
 	public function aggregate_monthly_purchase($records)
 	{
 	    return [
@@ -170,4 +197,43 @@ class Item extends AppModel {
 	    ];
 	}
 
+	public function sum_all(){
+
+	    $incomeH = $this->IncomeHistory->find('first', [
+	        'fields' => ['SUM(IncomeHistory.price) AS sum'],
+	    ]);
+	    $purchaseH = $this->PurchaseHistory->find('first', [
+	        'fields' => ['SUM(PurchaseHistory.price) AS sum'],
+	    ]);
+
+
+	    $today = date('Y-m-d');
+	    $incomeS = $this->IncomeSchedule->find('first', [
+	        'fields' => ['SUM(IncomeSchedule.price) AS sum'],
+	        'conditions' => [
+	            "IncomeSchedule.target_date > " => $today,
+	        ],
+	    ]);
+
+	    $purchaseS = $this->PurchaseSchedule->find('first', [
+	        'fields' => ['SUM(PurchaseSchedule.price) AS sum'],
+	        'conditions' => [
+	            "PurchaseSchedule.target_date > " => $today,
+	        ],
+	    ]);
+
+	    $history = $incomeH[0]['sum'] - $purchaseH[0]['sum'];
+	    $schedule = $incomeS[0]['sum'] - $purchaseS[0]['sum'];
+	    $toal = $history + $schedule;
+
+	    return [
+	        'incomeH' => $incomeH[0]['sum'],
+	        'purchaseH' => $purchaseH[0]['sum'],
+	        'incomeS' => $incomeS[0]['sum'],
+	        'purchaseS' => $purchaseS[0]['sum'],
+	        'history' => $history,
+	        'schedule' => $schedule,
+	        'toal' => $toal,
+	    ];
+	}
 }

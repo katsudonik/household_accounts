@@ -59,6 +59,19 @@ class PurchaseHistoriesController extends AppController {
 	    ));
 	}
 
+
+	/*
+	 * 全集計
+	 */
+	public function sum_all(){
+	    $this->PurchaseHistory->recursive = 0;
+
+        $resultSet = $this->Item->sum_all();
+        foreach($resultSet as $k => $v){
+            $this->set($k, $v);
+        }
+	}
+
 	/*
 	 * 年集計一覧
 	 */
