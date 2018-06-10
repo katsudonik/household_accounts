@@ -1,4 +1,4 @@
-<?php echo $this->element('term_selector', ['url' => '/purchase_histories/']); ?>
+<?php echo $this->element('term_selector', ['url' => '/purchase_histories/?ym=']); ?>
 
 <div>
 	<h2 class="trn"><?php echo __('Purchase_Histories'); ?></h2>

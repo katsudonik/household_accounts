@@ -1,5 +1,5 @@
 <div>
-	<?php echo $this->Html->script('home'); ?>
+	<?php echo $this->Html->script('term_selector'); ?>
 
 	<?php
 		$start = strtotime(date('Y-m') . '-01 -1 year');
@@ -14,7 +14,13 @@
 	?>
 	<div class="select_ym">
 		<span>
-			<?php  echo $this->Form->input('Display_Month', ['data-url' => $url, 'class' => 'change_ym', 'type'=>'select', 'options'=> $ret, 'selected' => isset($_GET['ym']) ? $_GET['ym'] : date('Y-m')]);?>
+			<?php  echo $this->Form->input('Display_Month', [
+			    'data-url' => $url,
+			    'class' => 'term_selector',
+			    'type'=>'select',
+			    'options'=> $ret,
+			    'selected' => isset($_GET['ym']) ? $_GET['ym'] : date('Y-m')
+			]);?>
     	</span>
 	</div>
 </div>

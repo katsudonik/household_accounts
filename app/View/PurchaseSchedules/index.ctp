@@ -1,4 +1,4 @@
-<?php echo $this->element('term_selector', ['url' => '/purchase_schedules/']); ?>
+<?php echo $this->element('term_selector', ['url' => '/purchase_schedules/?ym=']); ?>
 
 <div>
 	<h2><?php echo __('Purchase Schedules'); ?></h2>
