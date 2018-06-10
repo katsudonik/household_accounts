@@ -1,4 +1,4 @@
-<div class="incomeSchedules form">
+<div>
 <?php echo $this->Form->create('IncomeSchedule'); ?>
 	<fieldset>
 		<legend><?php echo __('Edit Income Schedule'); ?></legend>
@@ -14,17 +14,6 @@ s	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
 </div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('IncomeSchedule.id')), array('confirm' => __('Are you sure you want to delete # %s?', $this->Form->value('IncomeSchedule.id')))); ?></li>
-		<li><?php echo $this->Html->link(__('List Income Schedules'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Items'), array('controller' => 'items', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Item'), array('controller' => 'items', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
-<script>
 $(function() {
 	$('#datepicker_target_date').datepicker({dateFormat: 'yy-mm-dd'});
 	$('#datepicker_target_start_date').datepicker({dateFormat: 'yy-mm-dd'});
