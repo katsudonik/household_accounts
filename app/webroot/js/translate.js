@@ -50,9 +50,9 @@ $(function() {
         jp: "項目",
         en: "Item"
     },
-    Budgets: {
+    Purchase_Schedules: {
         jp: "予算",
-        en: "Budgets"
+        en: "Purchase_Schedules"
     },
     Aggregation: {
         jp: "集計",
@@ -115,9 +115,9 @@ $(function() {
         en: "Actions"
     },
 
-    Budget_Price: {
+    Schedule_Price: {
         jp: "予算",
-        en: "Budget_Price"
+        en: "Schedule_Price"
     },
     remain: {
         jp: "残額",
