@@ -4,7 +4,7 @@ $(function(){
 
 
 	$('.change_ym').change(function() {
-		location.href = "/purchase_histories/?ym=" + $(this).val();;
+		location.href = $(this).data('url') + "?ym=" + $(this).val();;
 	});
 	$('.ym_aggs').change(function() {
 		location.href = "/purchase_histories/aggregate_by_month?ym=" + $(this).val();;

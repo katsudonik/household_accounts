@@ -1,3 +1,5 @@
+<?php echo $this->element('term_selector', ['url' => '/purchase_schedules/']); ?>
+
 <div>
 	<h2><?php echo __('Purchase Schedules'); ?></h2>
 	<table cellpadding="0" cellspacing="0">
