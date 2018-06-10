@@ -25,8 +25,8 @@
     </li>
     <li><span class="trn">Aggregates</span>
         <ul class="child">
-            <li><?php echo $this->Html->link(__('Year'), array('controller' => 'purchase_histories', 'action' => 'aggregate_by_year')); ?></li>
-            <li><?php echo $this->Html->link(__('Month'), array('controller' => 'purchase_histories', 'action' => 'aggregate_by_month')); ?></li>
+            <li><?php echo $this->Html->link(__('Aggregation_Year'), array('controller' => 'purchase_histories', 'action' => 'aggregate_by_year')); ?></li>
+            <li><?php echo $this->Html->link(__('Aggregation_Month'), array('controller' => 'purchase_histories', 'action' => 'aggregate_by_month')); ?></li>
         </ul>
     </li>
     <li><span class="trn">Items</span>

@@ -1,7 +1,7 @@
 <?php echo $this->element('term_selector_y', ['url' => '/purchase_histories/aggregate_by_year?y=']); ?>
 
 <div>
-	<h2 class="trn">Aggregation</h2>
+	<h2 class="trn">Aggregation_Year</h2>
 	<table cellpadding="0" cellspacing="0">
 	<thead>
 	<tr>

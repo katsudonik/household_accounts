@@ -74,6 +74,14 @@ $(function() {
         jp: "集計",
         en: "Aggregates"
     },
+    Aggregation_Year: {
+        jp: "年次消費動向",
+        en: "Aggregation_Year"
+    },
+    Aggregation_Month: {
+        jp: "月次予算管理",
+        en: "Aggregation_Month"
+    },
     Edit: {
         jp: "編集",
         en: "Edit"
@@ -147,7 +155,10 @@ $(function() {
         jp: "種別",
         en: "type"
     },
-  };
+    "Schedule Price": {
+        jp: "予算",
+        en: "Schedule Price"
+    },  };
 
   var _t = $('body').translate({lang: "jp", t: t});
   var str = _t.g("translate");

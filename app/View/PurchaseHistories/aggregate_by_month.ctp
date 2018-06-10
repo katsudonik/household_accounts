@@ -1,7 +1,7 @@
 <?php echo $this->element('term_selector', ['url' => '/purchase_histories/aggregate_by_month?ym=']); ?>
 
 <div>
-	<h2 class="trn">Aggregation</h2>
+	<h2 class="trn">Aggregation_Month</h2>
 	<table cellpadding="0" cellspacing="0">
 	<thead>
 	<tr>
@@ -9,7 +9,7 @@
 			<th><?php echo $this->Paginator->sort('schedule_price'); ?></th>
 			<th><?php echo $this->Paginator->sort('price'); ?></th>
 			<th><?php echo $this->Paginator->sort('remain'); ?></th>
-			<th class="trn"><a class="chart" href="javascript:void(0)">chart</a></th>
+			<th class="trn"><a class="chart" href="javascript:void(0)"><b class="trn">chart</b></a></th>
 	</tr>
 	</thead>
 	<tbody>
