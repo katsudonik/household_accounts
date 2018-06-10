@@ -52,10 +52,9 @@ class PurchaseSchedule extends AppModel {
 		)
 	);
 
-	//TODO save: if exists same item & end_date is null,
 
 	public function save($data = null, $validate = true, $fieldList = []){
-	    $result = parent::save($data);
+	    $result = parent::save($data, $validate, $fieldList);
 	    if(!$result){
 	        return false;
 	    }

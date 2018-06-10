@@ -51,4 +51,33 @@ class IncomeSchedule extends AppModel {
 			'order' => ''
 		)
 	);
+
+	public function save($data = null, $validate = true, $fieldList = []){
+	    $result = parent::save($data, $validate, $fieldList);
+	    if(!$result){
+	        return false;
+	    }
+
+	    if(empty($data['IncomeSchedule']['target_start_date']) && empty($data['IncomeSchedule']['target_end_date']) && empty($record)){
+	        return $result;
+	    }
+
+	    parent::create();
+	    $record = $this->find('first', [
+	        'conditions' => [
+	            'NOT' => ['IncomeSchedule.id' => $this->getLastInsertID()],
+	            'target_date IS NULL',
+	            'target_end_date IS NULL',
+	            'item_id' => $data['IncomeSchedule']['item_id']
+	        ],
+	    ]);
+
+	    if(empty($record)){
+	        return true;
+	    }
+
+	    $record['IncomeSchedule']['target_end_date'] = date('Y-m-d', strtotime("{$data['IncomeSchedule']['target_start_date']} -1 day"));
+	    $this->set($record);
+	    return parent::save($record);
+	}
 }
