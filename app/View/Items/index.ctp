@@ -5,6 +5,7 @@
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
+			<th><?php echo $this->Paginator->sort('type'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
@@ -15,6 +16,7 @@
 	<tr>
 		<td><?php echo $this->Html->link(__(h($item['Item']['id'])), array('action' => 'view', $item['Item']['id'])); ?></td>
 		<td><?php echo h($item['Item']['name']); ?>&nbsp;</td>
+		<td><?php echo h($item['Item']['type']); ?>&nbsp;</td>
 		<td><?php echo h($item['Item']['created']); ?>&nbsp;</td>
 		<td><?php echo h($item['Item']['modified']); ?>&nbsp;</td>
 		<td class="actions">

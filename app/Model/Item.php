@@ -155,7 +155,7 @@ class Item extends AppModel {
 	                'conditions' => array_merge($scheduleCond, ['Item.id = PurchaseSchedule.item_id'])
 	            ],
 	        ],
-	        'conditions' => $commonCond,
+	        'conditions' => array_merge($commonCond, ['Item.type = 1']),
 	    ]), '{n}.Item');
 	    $this->virtualFields = [];
 	    return $records;

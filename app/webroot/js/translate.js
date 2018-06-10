@@ -131,13 +131,21 @@ $(function() {
         jp: "予算",
         en: "Schedule_Price"
     },
+    Remain: {
+        jp: "残高",
+        en: "remain"
+    },
     remain: {
-        jp: "残額",
+        jp: "残高",
         en: "remain"
     },
     chart: {
         jp: "グラフ",
         en: "chart"
+    },
+    type: {
+        jp: "種別",
+        en: "type"
     },
   };
 

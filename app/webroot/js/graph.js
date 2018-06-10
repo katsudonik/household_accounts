@@ -18,6 +18,7 @@ function aggregate_c3(){
 	              });
 	        });
 		}
+
 		$.ajax({
 	        url:'/purchase_histories/aggregate_c3',
 	        type:'GET',

@@ -143,7 +143,7 @@ class PurchaseHistoriesController extends AppController {
 	private function _index()
 	{
 	    $ym = $this->_param('ym', date('Y-m'));
-	    $this->set('purchaseHistories', $this->PurchaseHistory->find_monthly(Query::conditions_this_month('target_date', $ym)));
+	    $this->set('purchaseHistories', $this->PurchaseHistory->find_monthly(Query::conditions_month('target_date', $ym)));
 	    $this->set('ym', $ym);
 	    $items = $this->PurchaseHistory->Item->find('list');
 	    $this->set(compact('items'));

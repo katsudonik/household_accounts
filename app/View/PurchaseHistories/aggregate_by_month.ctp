@@ -9,7 +9,7 @@
 			<th><?php echo $this->Paginator->sort('schedule_price'); ?></th>
 			<th><?php echo $this->Paginator->sort('price'); ?></th>
 			<th><?php echo $this->Paginator->sort('remain'); ?></th>
-			<th class="trn"><?php echo 'chart'; ?></th>
+			<th class="trn"><a class="chart" href="javascript:void(0)">chart</a></th>
 	</tr>
 	</thead>
 	<tbody>
@@ -64,4 +64,10 @@
 
 
 <?php echo $this->Html->script('graph'); ?>
-<script>aggregate_c3();</script>
+<script>
+$(function(){
+	$('.chart').on('click',function(){
+		aggregate_c3();
+	});
+});
+</script>
