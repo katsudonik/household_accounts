@@ -1,4 +1,4 @@
-<div class="purchaseSchedules index">
+<div>
 	<h2><?php echo __('Purchase Schedules'); ?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<thead>
@@ -10,11 +10,10 @@
 			<th><?php echo $this->Paginator->sort('target_end_date'); ?></th>
 			<th><?php echo $this->Paginator->sort('price'); ?></th>
 			<th><?php echo $this->Paginator->sort('memo'); ?></th>
-			<th><?php echo $this->Paginator->sort('created'); ?></th>
-			<th><?php echo $this->Paginator->sort('modified'); ?></th>
 			<th><?php echo $this->Paginator->sort('store_name'); ?></th>
 			<th><?php echo $this->Paginator->sort('purchases'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
+
 	</tr>
 	</thead>
 	<tbody>
@@ -29,8 +28,6 @@
 		<td><?php echo h($purchaseSchedule['PurchaseSchedule']['target_end_date']); ?>&nbsp;</td>
 		<td><?php echo h($purchaseSchedule['PurchaseSchedule']['price']); ?>&nbsp;</td>
 		<td><?php echo h($purchaseSchedule['PurchaseSchedule']['memo']); ?>&nbsp;</td>
-		<td><?php echo h($purchaseSchedule['PurchaseSchedule']['created']); ?>&nbsp;</td>
-		<td><?php echo h($purchaseSchedule['PurchaseSchedule']['modified']); ?>&nbsp;</td>
 		<td><?php echo h($purchaseSchedule['PurchaseSchedule']['store_name']); ?>&nbsp;</td>
 		<td><?php echo h($purchaseSchedule['PurchaseSchedule']['purchases']); ?>&nbsp;</td>
 		<td class="actions">
@@ -55,12 +52,4 @@
 		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
 	?>
 	</div>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('New Purchase Schedule'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Items'), array('controller' => 'items', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Item'), array('controller' => 'items', 'action' => 'add')); ?> </li>
-	</ul>
 </div>
