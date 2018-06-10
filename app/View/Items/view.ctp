@@ -76,7 +76,7 @@
 		<tr>
 			<td><?php echo $purchaseHistory['id']; ?></td>
 			<td><?php echo $purchaseHistory['item_id']; ?></td>
-			<td><?php echo $purchaseHistory['purchase_date']; ?></td>
+			<td><?php echo $purchaseHistory['target_date']; ?></td>
 			<td><?php echo $purchaseHistory['price']; ?></td>
 			<td><?php echo $purchaseHistory['memo']; ?></td>
 			<td><?php echo $purchaseHistory['created']; ?></td>

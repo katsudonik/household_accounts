@@ -8,7 +8,9 @@
 		echo $this->Form->input('income_date');
 		echo $this->Form->input('price');
 		echo $this->Form->input('memo');
-	?>
+		echo $this->Form->input('target_start_date');
+		echo $this->Form->input('target_end_date');
+		?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
 </div>

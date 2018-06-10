@@ -1,6 +1,6 @@
 <?php
 class Query{
-    public static function conditions_this_month($field, $ym){
+    public static function conditions_month($field, $ym){
         if($ym === null){
             return [];
         }
@@ -10,7 +10,7 @@ class Query{
             ];
     }
 
-    public static function conditions_this_year($field, $year){
+    public static function conditions_year($field, $year){
         return  [
             "{$field} >= " => "{$year}-01-01",
             "{$field} < " => "{$year}-12-01",

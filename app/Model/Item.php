@@ -65,12 +65,71 @@ class Item extends AppModel {
 	private $_virtualFields = array(
 	    'name' => 'Item.name',
 	    'schedule_id' => 'PurchaseSchedule.id',
-	    'schedule_price' => 'PurchaseSchedule.price',
+	    'schedule_price' => 'SUM(PurchaseSchedule.price)',
 	    'price' => 'CASE WHEN PurchaseHistory.price IS NULL THEN 0 ELSE SUM(PurchaseHistory.price) END',
-	    'remain' => 'CASE WHEN PurchaseHistory.price IS NULL THEN PurchaseSchedule.price ELSE  PurchaseSchedule.price - SUM(PurchaseHistory.price) END',
+	    'remain' => 'CASE WHEN PurchaseHistory.price IS NULL THEN SUM(PurchaseSchedule.price) ELSE  SUM(PurchaseSchedule.price) - SUM(PurchaseHistory.price) END',
 	);
 
-	public function aggregate_purchase($conditions, $fields = [
+	public function agg_of_month($ym, $commonCond = [], $fields = [
+	    'name',
+	    'schedule_id',
+	    'schedule_price',
+	    'price',
+	    'remain',]){
+	    return $this->aggregate_purchase(
+	        Query::conditions_month('PurchaseHistory.target_date', $ym),
+	        $this->schedule_condition($ym, 'month'),
+	        $commonCond,
+	        $fields
+	        );
+	}
+
+	private function schedule_condition($ymOrYear, $monthOrYear){
+	    if(!in_array($monthOrYear, ['year', 'month', 'day'])){
+	        return [];
+	    }
+
+	    $date = $monthOrYear == 'month' ? "{$ymOrYear}-01" : "{$ymOrYear}-01-01";
+	    $targetTermDate = [
+	        "PurchaseSchedule.target_start_date <= " => $date,
+	        [
+	          'OR' =>  [
+	              "PurchaseSchedule.target_end_date >= " => $date,
+	              "PurchaseSchedule.target_end_date IS NULL",
+	          ]
+	        ],
+
+	    ];
+
+	    $targetDate = [
+	        "PurchaseSchedule.target_date >= " => $date,
+	        "PurchaseSchedule.target_date < " => date('Y-m-d', strtotime("{$date} + 1 {$monthOrYear}")),
+	    ];
+
+	    return [
+	        'OR' => [
+	            $targetTermDate,
+	            $targetDate,
+	        ]
+	    ];
+	}
+
+
+	public function agg_of_year($year, $commonCond = [], $fields = [
+	    'name',
+	    'schedule_id',
+	    'schedule_price',
+	    'price',
+	    'remain',]){
+	    return $this->aggregate_purchase(
+	        Query::conditions_year('PurchaseHistory.target_date', $year),
+	        $this->schedule_condition($year, 'year'),
+	        $commonCond,
+	        $fields
+	        );
+	}
+
+	public function aggregate_purchase($historyCond = [], $scheduleCond = [], $commonCond = [], $fields = [
 	    'name',
 	    'schedule_id',
 	    'schedule_price',
@@ -87,15 +146,16 @@ class Item extends AppModel {
 	                'type' => 'LEFT',
 	                'table' => 'purchase_histories',
 	                'alias' => 'PurchaseHistory',
-	                'conditions' => array_merge($conditions, ['Item.id = PurchaseHistory.item_id',]),
+	                'conditions' => array_merge($historyCond, ['Item.id = PurchaseHistory.item_id',]),
 	            ],
 	            [
 	                'type' => 'LEFT',
 	                'table' => 'purchase_schedules',
 	                'alias' => 'PurchaseSchedule',
-	                'conditions' => ['Item.id = PurchaseSchedule.item_id',],
+	                'conditions' => array_merge($scheduleCond, ['Item.id = PurchaseSchedule.item_id'])
 	            ],
 	        ],
+	        'conditions' => $commonCond,
 	    ]), '{n}.Item');
 	    $this->virtualFields = [];
 	    return $records;

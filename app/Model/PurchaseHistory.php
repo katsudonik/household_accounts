@@ -23,7 +23,7 @@ class PurchaseHistory extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'purchase_date' => array(
+		'target_date' => array(
 			'date' => array(
 				'rule' => array('date'),
 				//'message' => 'Your custom message here',

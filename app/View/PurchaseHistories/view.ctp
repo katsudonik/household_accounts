@@ -11,9 +11,9 @@
 			<?php echo $this->Html->link($purchaseHistory['Item']['name'], array('controller' => 'items', 'action' => 'view', $purchaseHistory['Item']['id'])); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Purchase Date'); ?></dt>
+		<dt><?php echo __('Target Date'); ?></dt>
 		<dd>
-			<?php echo h($purchaseHistory['PurchaseHistory']['purchase_date']); ?>
+			<?php echo h($purchaseHistory['PurchaseHistory']['target_date']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Price'); ?></dt>

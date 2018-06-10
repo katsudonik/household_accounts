@@ -11,7 +11,7 @@
 	<tr>
 			<th style="width:15px;"><b class="trn">id</b></th>
 			<th style="width:85px;"><b class="trn">item_name</b></th>
-			<th style="width:136px;"><b class="trn">purchase_date</b></th>
+			<th style="width:136px;"><b class="trn">target_date</b></th>
 			<th style="width:38px;"><b class="trn">price</b></th>
 			<th style="width:250px;"><b class="trn">store_name</b></th>
 			<th style="width:250px;"><b class="trn">purchases</b></th>
@@ -32,9 +32,9 @@
 			<span><span class="item_id_before"><?php echo $purchaseHistory['PurchaseHistory']['item_id']; ?></span><?php echo $this->Html->link($purchaseHistory['Item']['name'], array('controller' => 'items', 'action' => 'view', $purchaseHistory['Item']['id'])); ?></span>
 			<?php echo $this->Form->input('item_id', ['selected' => $purchaseHistory['PurchaseHistory']['item_id'], 'name' => 'data[PurchaseHistory][item_id][]', 'class' => 'item_name', 'label' => false,]); ?>
 		</td>
-		<td class="purchase_date" >
-			<span><?php echo h($purchaseHistory['PurchaseHistory']['purchase_date']); ?></span>
-			<?php echo $this->Form->input('purchase_date', array('type' => 'text', 'id' => "datepicker_{$i}", 'value' => h($purchaseHistory['PurchaseHistory']['purchase_date']), 'name' => 'data[PurchaseHistory][purchase_date][]', 'class' => 'date')); ?>
+		<td class="target_date" >
+			<span><?php echo h($purchaseHistory['PurchaseHistory']['target_date']); ?></span>
+			<?php echo $this->Form->input('target_date', array('type' => 'text', 'id' => "datepicker_{$i}", 'value' => h($purchaseHistory['PurchaseHistory']['target_date']), 'name' => 'data[PurchaseHistory][target_date][]', 'class' => 'date')); ?>
 		</td>
 		<td class="price" >
 			<span><?php echo h($purchaseHistory['PurchaseHistory']['price']);?></span>
