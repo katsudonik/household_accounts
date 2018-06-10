@@ -3,7 +3,7 @@ App::uses('AppModel', 'Model');
 /**
  * Item Model
  *
- * @property Budget $Budget
+ * @property PurchaseSchedule $PurchaseSchedule
  * @property PurchaseHistory $PurchaseHistory
  */
 class Item extends AppModel {
@@ -34,8 +34,8 @@ class Item extends AppModel {
  * @var array
  */
 	public $hasMany = array(
-		'Budget' => array(
-			'className' => 'Budget',
+		'PurchaseSchedule' => array(
+			'className' => 'PurchaseSchedule',
 			'foreignKey' => 'item_id',
 			'dependent' => false,
 			'conditions' => '',
@@ -64,16 +64,16 @@ class Item extends AppModel {
 
 	private $_virtualFields = array(
 	    'name' => 'Item.name',
-	    'budget_id' => 'Budget.id',
-	    'budget_price' => 'Budget.price',
+	    'schedule_id' => 'PurchaseSchedule.id',
+	    'schedule_price' => 'PurchaseSchedule.price',
 	    'price' => 'CASE WHEN PurchaseHistory.price IS NULL THEN 0 ELSE SUM(PurchaseHistory.price) END',
-	    'remain' => 'CASE WHEN PurchaseHistory.price IS NULL THEN Budget.price ELSE  Budget.price - SUM(PurchaseHistory.price) END',
+	    'remain' => 'CASE WHEN PurchaseHistory.price IS NULL THEN PurchaseSchedule.price ELSE  PurchaseSchedule.price - SUM(PurchaseHistory.price) END',
 	);
 
 	public function aggregate_purchase($conditions, $fields = [
 	    'name',
-	    'budget_id',
-	    'budget_price',
+	    'schedule_id',
+	    'schedule_price',
 	    'price',
 	    'remain',])
 	{
@@ -91,9 +91,9 @@ class Item extends AppModel {
 	            ],
 	            [
 	                'type' => 'LEFT',
-	                'table' => 'budgets',
-	                'alias' => 'Budget',
-	                'conditions' => ['Item.id = Budget.item_id',],
+	                'table' => 'purchase_schedules',
+	                'alias' => 'PurchaseSchedule',
+	                'conditions' => ['Item.id = PurchaseSchedule.item_id',],
 	            ],
 	        ],
 	    ]), '{n}.Item');
@@ -104,7 +104,7 @@ class Item extends AppModel {
 	public function aggregate_monthly_purchase($records)
 	{
 	    return [
-	        'budget_price' => array_sum(Hash::extract($records, '{n}.budget_price')),
+	        'schedule_price' => array_sum(Hash::extract($records, '{n}.schedule_price')),
 	        'price' => array_sum(Hash::extract($records, '{n}.price')),
 	        'remain' => array_sum(Hash::extract($records, '{n}.remain')),
 	    ];

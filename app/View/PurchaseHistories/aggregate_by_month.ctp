@@ -27,7 +27,7 @@
 	<thead>
 	<tr>
 			<th><?php echo $this->Paginator->sort('item_id'); ?></th>
-			<th><?php echo $this->Paginator->sort('budget_price'); ?></th>
+			<th><?php echo $this->Paginator->sort('schedule_price'); ?></th>
 			<th><?php echo $this->Paginator->sort('price'); ?></th>
 			<th><?php echo $this->Paginator->sort('remain'); ?></th>
 			<th class="trn"><?php echo 'chart'; ?></th>
@@ -41,7 +41,7 @@
 			<?php echo h($purchaseHistory['name']); ?>
 		</td>
 		<td>
-			<?php echo $this->Html->link(__(h($purchaseHistory['budget_price'])), array('controller' => 'budgets', 'action' => 'edit', $purchaseHistory['budget_id'])); ?>
+			<?php echo $this->Html->link(__(h($purchaseHistory['schedule_price'])), array('controller' => 'purchase_schedules', 'action' => 'edit', $purchaseHistory['schedule_id'])); ?>
 		</td>
 		<td>
 			<?php echo h($purchaseHistory['price']); ?>
@@ -62,7 +62,7 @@
 		</td>
 		<td>
 			<b>
-				<?php echo h($aggregateSumHistory['budget_price']); ?>
+				<?php echo h($aggregateSumHistory['schedule_price']); ?>
 			</b>
 		</td>
 		<td>
