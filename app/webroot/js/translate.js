@@ -54,6 +54,14 @@ $(function() {
         jp: "項目",
         en: "Item"
     },
+    store_name: {
+        jp: "店名",
+        en: "store name"
+    },
+    purchases: {
+        jp: "商品",
+        en: "purchases"
+    },
     Purchase_Schedules: {
         jp: "購入予定",
         en: "Purchase_Schedules"
