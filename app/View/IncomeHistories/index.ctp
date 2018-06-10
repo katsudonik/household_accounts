@@ -7,6 +7,8 @@
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('item_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('income_date'); ?></th>
+			<th><?php echo $this->Paginator->sort('target_start_date'); ?></th>
+			<th><?php echo $this->Paginator->sort('target_end_date'); ?></th>
 			<th><?php echo $this->Paginator->sort('price'); ?></th>
 			<th><?php echo $this->Paginator->sort('memo'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
@@ -22,6 +24,8 @@
 			<?php echo $this->Html->link($incomeHistory['Item']['name'], array('controller' => 'items', 'action' => 'view', $incomeHistory['Item']['id'])); ?>
 		</td>
 		<td><?php echo h($incomeHistory['IncomeHistory']['income_date']); ?>&nbsp;</td>
+		<td><?php echo h($incomeHistory['IncomeHistory']['target_start_date']); ?>&nbsp;</td>
+		<td><?php echo h($incomeHistory['IncomeHistory']['target_end_date']); ?>&nbsp;</td>
 		<td><?php echo h($incomeHistory['IncomeHistory']['price']); ?>&nbsp;</td>
 		<td><?php echo h($incomeHistory['IncomeHistory']['memo']); ?>&nbsp;</td>
 		<td><?php echo h($incomeHistory['IncomeHistory']['created']); ?>&nbsp;</td>

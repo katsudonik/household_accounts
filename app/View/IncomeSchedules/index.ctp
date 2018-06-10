@@ -7,12 +7,12 @@
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('item_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('target_date'); ?></th>
+			<th><?php echo $this->Paginator->sort('target_start_date'); ?></th>
+			<th><?php echo $this->Paginator->sort('target_end_date'); ?></th>
 			<th><?php echo $this->Paginator->sort('price'); ?></th>
 			<th><?php echo $this->Paginator->sort('memo'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th><?php echo $this->Paginator->sort('modified'); ?></th>
-			<th><?php echo $this->Paginator->sort('target_start_date'); ?></th>
-			<th><?php echo $this->Paginator->sort('target_end_date'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	</thead>
@@ -24,12 +24,12 @@
 			<?php echo $this->Html->link($incomeSchedule['Item']['name'], array('controller' => 'items', 'action' => 'view', $incomeSchedule['Item']['id'])); ?>
 		</td>
 		<td><?php echo h($incomeSchedule['IncomeSchedule']['target_date']); ?>&nbsp;</td>
+		<td><?php echo h($incomeSchedule['IncomeSchedule']['target_start_date']); ?>&nbsp;</td>
+		<td><?php echo h($incomeSchedule['IncomeSchedule']['target_end_date']); ?>&nbsp;</td>
 		<td><?php echo h($incomeSchedule['IncomeSchedule']['price']); ?>&nbsp;</td>
 		<td><?php echo h($incomeSchedule['IncomeSchedule']['memo']); ?>&nbsp;</td>
 		<td><?php echo h($incomeSchedule['IncomeSchedule']['created']); ?>&nbsp;</td>
 		<td><?php echo h($incomeSchedule['IncomeSchedule']['modified']); ?>&nbsp;</td>
-		<td><?php echo h($incomeSchedule['IncomeSchedule']['target_start_date']); ?>&nbsp;</td>
-		<td><?php echo h($incomeSchedule['IncomeSchedule']['target_end_date']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $incomeSchedule['IncomeSchedule']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $incomeSchedule['IncomeSchedule']['id'])); ?>
