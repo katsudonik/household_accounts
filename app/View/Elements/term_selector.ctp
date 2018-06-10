@@ -15,6 +15,7 @@
 	<div class="select_ym">
 		<span>
 			<?php  echo $this->Form->input('Display_Month', [
+			    'label' => 'Display_Month',
 			    'data-url' => $url,
 			    'class' => 'term_selector',
 			    'type'=>'select',

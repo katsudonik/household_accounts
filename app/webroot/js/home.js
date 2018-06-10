@@ -1,10 +1,4 @@
-
 $(function(){
-	$('.y_aggs').change(function() {
-		location.href = "/purchase_histories/aggregate_by_year?y=" + $(this).val();;
-	});
-
-
 	$('.cancel').hide();
 	$('.submit').hide();
 	$('.item_id_before').hide();
