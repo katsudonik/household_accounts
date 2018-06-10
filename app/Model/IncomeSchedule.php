@@ -57,6 +57,10 @@ class IncomeSchedule extends AppModel {
 	        && empty($data['IncomeSchedule']['target_date'])){
 	            return false;
 	    }
+	    if(!empty($data['IncomeSchedule']['target_start_date'])
+	        && !empty($data['IncomeSchedule']['target_date'])){
+	            return false;
+	    }
 
 	    $result = parent::save($data, $validate, $fieldList);
 	    if(!$result){
