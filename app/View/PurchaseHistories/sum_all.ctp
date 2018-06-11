@@ -1,3 +1,19 @@
+<?php echo $this->Form->input('schedule_end_date', array(
+    'type' => 'text',
+    'id' => "datepicker",
+    'class' => 'schedule_end_date',
+    'default' => $this->request->query('end') ? $this->request->query('end') : date('Y-m-d'),
+    'label' => ['class' => ['trn']]
+));?>
+
+<script>
+$(function(){
+	$('.schedule_end_date').on('change',function(){
+		location.href = location.protocol + "//" + location.hostname + ":" + location.port + location.pathname + "?end=" + $(this).val();
+	});
+});
+</script>
+
 <table cellpadding="0" cellspacing="0">
 <thead>
 <tr>
