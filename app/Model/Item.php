@@ -266,7 +266,9 @@ class Item extends AppModel {
 
 	    $sum = 0;
 	    foreach($terms as $term){
+	        $today = strtotime(date('Y-m-d'));
 	        $start = strtotime($term[get_class($model)]['start']);
+	        $start = $today < $start ? $start : $today;
 	        $end = $term[get_class($model)]['end'];
 	        $end = !empty($end) ? strtotime($end) : strtotime($paramEnd);
 
