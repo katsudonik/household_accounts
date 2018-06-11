@@ -66,7 +66,7 @@ class PurchaseHistoriesController extends AppController {
 	public function sum_all(){
 	    $this->PurchaseHistory->recursive = 0;
 
-        $resultSet = $this->Item->sum_all();
+	    $resultSet = $this->Item->sum_all($this->_param('end', date('Y-m-d')));
         foreach($resultSet as $k => $v){
             $this->set($k, $v);
         }

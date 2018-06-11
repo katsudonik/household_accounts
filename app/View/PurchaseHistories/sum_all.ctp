@@ -18,6 +18,14 @@
 </tr>
 <tr>
 	<td>
+		<b>history</b>
+	</td>
+	<td>
+		<b><?php echo h($history); ?></b>
+	</td>
+</tr>
+<tr>
+	<td>
 		incomeS
 	</td>
 	<td>
@@ -34,25 +42,17 @@
 </tr>
 <tr>
 	<td>
-		history
+		<b>schedule</b>
 	</td>
 	<td>
-		<?php echo h($history); ?>
-	</td>
-</tr>
-<tr>
-	<td>
-		schedule
-	</td>
-	<td>
-		<?php echo h($schedule); ?>
+		<b><?php echo h($schedule); ?></b>
 	</td>
 </tr>
 <tr>
 	<td>
-		toal
+		<b>toal</b>
 	</td>
 	<td>
-		<?php echo h($toal); ?>
+		<b><?php echo h($toal); ?></b>
 	</td>
 </tr>

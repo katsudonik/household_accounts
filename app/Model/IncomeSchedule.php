@@ -53,6 +53,7 @@ class IncomeSchedule extends AppModel {
 	);
 
 	public function save($data = null, $validate = true, $fieldList = []){
+
 	    if(empty($data['IncomeSchedule']['target_start_date'])
 	        && empty($data['IncomeSchedule']['target_date'])){
 	            return false;
@@ -72,9 +73,11 @@ class IncomeSchedule extends AppModel {
 	    }
 
 	    parent::create();
+	    $id = isset($data['IncomeSchedule']['id']) ? $data['IncomeSchedule']['id'] : $this->getLastInsertID();
+
 	    $record = $this->find('first', [
 	        'conditions' => [
-	            'NOT' => ['IncomeSchedule.id' => $this->getLastInsertID()],
+	            'NOT' => ['IncomeSchedule.id' => $id],
 	            'target_date IS NULL',
 	            'target_end_date IS NULL',
 	            'item_id' => $data['IncomeSchedule']['item_id']

@@ -197,43 +197,90 @@ class Item extends AppModel {
 	    ];
 	}
 
-	public function sum_all(){
+	public function sum_all($paramEnd){
 
-	    $incomeH = $this->IncomeHistory->find('first', [
+	    $incomeH = $this->getSum($this->IncomeHistory->find('first', [
 	        'fields' => ['SUM(IncomeHistory.price) AS sum'],
-	    ]);
-	    $purchaseH = $this->PurchaseHistory->find('first', [
+	    ]));
+	    $purchaseH = $this->getSum($this->PurchaseHistory->find('first', [
 	        'fields' => ['SUM(PurchaseHistory.price) AS sum'],
-	    ]);
+	    ]));
 
 
 	    $today = date('Y-m-d');
-	    $incomeS = $this->IncomeSchedule->find('first', [
+	    $incomeS = $this->getSum($this->IncomeSchedule->find('first', [
 	        'fields' => ['SUM(IncomeSchedule.price) AS sum'],
 	        'conditions' => [
 	            "IncomeSchedule.target_date > " => $today,
 	        ],
-	    ]);
+	    ]));
+	    $incomeS += $this->sumInTerm($this->IncomeSchedule, $paramEnd);
 
-	    $purchaseS = $this->PurchaseSchedule->find('first', [
+
+	    $purchaseS = $this->getSum($this->PurchaseSchedule->find('first', [
 	        'fields' => ['SUM(PurchaseSchedule.price) AS sum'],
 	        'conditions' => [
 	            "PurchaseSchedule.target_date > " => $today,
 	        ],
-	    ]);
+	    ]));
+	    $purchaseS += $this->sumInTerm($this->PurchaseSchedule, $paramEnd);
 
-	    $history = $incomeH[0]['sum'] - $purchaseH[0]['sum'];
-	    $schedule = $incomeS[0]['sum'] - $purchaseS[0]['sum'];
-	    $toal = $history + $schedule;
+	    $history = $incomeH - $purchaseH;
+	    $schedule = $incomeS - $purchaseS;
 
 	    return [
-	        'incomeH' => $incomeH[0]['sum'],
-	        'purchaseH' => $purchaseH[0]['sum'],
-	        'incomeS' => $incomeS[0]['sum'],
-	        'purchaseS' => $purchaseS[0]['sum'],
+	        'incomeH' => $incomeH,
+	        'purchaseH' => $purchaseH,
+	        'incomeS' => $incomeS,
+	        'purchaseS' => $purchaseS,
 	        'history' => $history,
 	        'schedule' => $schedule,
-	        'toal' => $toal,
+	        'toal' => $history + $schedule,
 	    ];
+	}
+
+	private function getSum($records){
+	    return $records[0]['sum'];
+	}
+
+	private function sumInTerm($model, $paramEnd){
+	    $salaryDay = '10';
+
+	    $terms = $model->find('all', [
+	        'fields' => [
+	            'price',
+	            'target_start_date AS start',
+	            'target_end_date AS end'
+	        ],
+	        'conditions' => [
+	            "target_date IS NULL",
+	            "target_start_date IS NOT NULL",
+	            [
+	                'OR' => [
+	                    "target_end_date >=" => date('Y-m-d'),
+	                    "target_end_date IS NULL",
+	                ]
+	            ],
+	        ],
+	    ]);
+
+	    $sum = 0;
+	    foreach($terms as $term){
+	        $start = strtotime($term[get_class($model)]['start']);
+	        $end = $term[get_class($model)]['end'];
+	        $end = !empty($end) ? strtotime($end) : strtotime($paramEnd);
+
+	        $tmp = strtotime(date('Y-m-', $start) . $salaryDay);
+
+	        while($tmp <= $end){
+	            if($start < $tmp && $tmp < $end){
+	                $sum += $term[get_class($model)]['price'];
+	            }
+	            $tmp = strtotime('+1 month', $tmp);
+	        }
+
+	    }
+
+	    return $sum;
 	}
 }
