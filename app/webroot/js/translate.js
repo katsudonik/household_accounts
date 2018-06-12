@@ -172,7 +172,7 @@ $(function() {
         en: "target_end_date"
     },
     "schedule_end_date": {
-        jp: "対象期間終了日",
+        jp: "予定対象期間終了日（明日～指定日）",
         en: "target_end_date"
     },
     "point": {

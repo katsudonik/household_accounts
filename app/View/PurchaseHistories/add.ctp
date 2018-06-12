@@ -6,7 +6,7 @@
 		echo $this->Form->input('item_id');
 		echo $this->Form->input('target_date', array(
 		    'type' => 'text',
-		    'class' => 'datepicker',
+		    'id' => 'datepicker_target_date',
 		    'default' => date('Y-m-d'),
 		    'label' => 'target_date'
 		));
@@ -18,3 +18,9 @@
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
 </div>
+
+<script>
+$(function() {
+	$('#datepicker_target_date').datepicker({dateFormat: 'yy-mm-dd'});
+});
+</script>
