@@ -171,6 +171,10 @@ $(function() {
         jp: "対象期間終了日",
         en: "target_end_date"
     },
+    "schedule_end_date": {
+        jp: "対象期間終了日",
+        en: "target_end_date"
+    },
     "point": {
         jp: "特定日",
         en: "point"
@@ -226,6 +230,38 @@ $(function() {
     "Edit Item": {
         jp: "項目編集",
         en: "Add Item"
+    },
+    "Sum_All": {
+        jp: "総計",
+        en: "Sum_All"
+    },
+    "incomeH": {
+        jp: "収入実績金額",
+        en: "incomeH"
+    },
+    "purchaseH": {
+        jp: "購入実績金額",
+        en: "purchaseH"
+    },
+    "history": {
+        jp: "実績小計",
+        en: "history"
+    },
+    "incomeS": {
+        jp: "収入予定金額",
+        en: "incomeS"
+    },
+    "purchaseS": {
+        jp: "購入予定金額",
+        en: "purchaseS"
+    },
+    "schedule": {
+        jp: "予定小計",
+        en: "schedule"
+    },
+    "toal": {
+        jp: "総計",
+        en: "toal"
     },
     };
 

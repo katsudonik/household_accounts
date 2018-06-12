@@ -3,7 +3,7 @@
     'id' => "datepicker",
     'class' => 'schedule_end_date',
     'default' => $this->request->query('end') ? $this->request->query('end') : date('Y-m-d'),
-    'label' => ['class' => ['trn']]
+    'label' => ['class' => ['trn'], 'text' => 'schedule_end_date']
 ));?>
 
 <script>
@@ -18,7 +18,7 @@ $(function(){
 <thead>
 <tr>
 	<td>
-		incomeH
+		<span class="trn">incomeH</span>
 	</td>
 	<td>
 		<?php echo h($incomeH); ?>
@@ -26,7 +26,7 @@ $(function(){
 </tr>
 <tr>
 	<td>
-		purchaseH
+		<span class="trn">purchaseH</span>
 	</td>
 	<td>
 		<?php echo h($purchaseH); ?>
@@ -34,7 +34,7 @@ $(function(){
 </tr>
 <tr>
 	<td>
-		<b>history</b>
+		<b class="trn">history</b>
 	</td>
 	<td>
 		<b><?php echo h($history); ?></b>
@@ -42,7 +42,7 @@ $(function(){
 </tr>
 <tr>
 	<td>
-		incomeS
+		<span class="trn">incomeS</span>
 	</td>
 	<td>
 		<?php echo h($incomeS); ?>
@@ -50,7 +50,7 @@ $(function(){
 </tr>
 <tr>
 	<td>
-		purchaseS
+		<span class="trn">purchaseS</span>
 	</td>
 	<td>
 		<?php echo h($purchaseS); ?>
@@ -58,7 +58,7 @@ $(function(){
 </tr>
 <tr>
 	<td>
-		<b>schedule</b>
+		<b class="trn">schedule</b>
 	</td>
 	<td>
 		<b><?php echo h($schedule); ?></b>
@@ -66,7 +66,7 @@ $(function(){
 </tr>
 <tr>
 	<td>
-		<b>toal</b>
+		<b class="trn">toal</b>
 	</td>
 	<td>
 		<b><?php echo h($toal); ?></b>
