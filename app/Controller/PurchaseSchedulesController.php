@@ -55,7 +55,7 @@ class PurchaseSchedulesController extends AppController {
 				$this->Flash->error(__('The purchase schedule could not be saved. Please, try again.'));
 			}
 		}
-		$items = $this->PurchaseSchedule->Item->find('list');
+		$items = $this->PurchaseSchedule->Item->find('list', ['conditions' => ['Item.type' => 1]]);
 		$this->set(compact('items'));
 	}
 
@@ -81,7 +81,7 @@ class PurchaseSchedulesController extends AppController {
 			$options = array('conditions' => array('PurchaseSchedule.' . $this->PurchaseSchedule->primaryKey => $id));
 			$this->request->data = $this->PurchaseSchedule->find('first', $options);
 		}
-		$items = $this->PurchaseSchedule->Item->find('list');
+		$items = $this->PurchaseSchedule->Item->find('list', ['conditions' => ['Item.type' => 1]]);
 		$this->set(compact('items'));
 	}
 

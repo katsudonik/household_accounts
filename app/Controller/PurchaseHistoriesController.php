@@ -96,7 +96,9 @@ class PurchaseHistoriesController extends AppController {
 	    $this->set('ym', $ym);
 	}
 
-
+    /*
+     * 年次項目別消費額表
+     */
 	public function aggregate_c3_item(){
 	    $year = $this->_param('y', date('Y'));
 	    $aggregateItemHistories = $this->Item->agg_of_year($year, [], ['name', 'price',]);
@@ -108,7 +110,9 @@ class PurchaseHistoriesController extends AppController {
 	    ));
 	}
 
-
+	/*
+	 * 年間項目別消費額時系列グラフ
+	 */
 	public function aggregate_c3_all() {
 	    $year = $this->_param('y', date('Y'));
 	    $start = strtotime($year . '-01-01');
@@ -158,7 +162,7 @@ class PurchaseHistoriesController extends AppController {
 	    $ym = $this->_param('ym', date('Y-m'));
 	    $this->set('purchaseHistories', $this->PurchaseHistory->find_monthly(Query::conditions_month('target_date', $ym)));
 	    $this->set('ym', $ym);
-	    $items = $this->PurchaseHistory->Item->find('list');
+	    $items = $this->PurchaseHistory->Item->find('list', ['conditions' => ['Item.type' => 1]]);
 	    $this->set(compact('items'));
 	}
 /**
@@ -191,7 +195,7 @@ class PurchaseHistoriesController extends AppController {
 				$this->Flash->error(__('The purchase history could not be saved. Please, try again.'));
 			}
 		}
-		$items = $this->PurchaseHistory->Item->find('list');
+		$items = $this->PurchaseHistory->Item->find('list', ['conditions' => ['Item.type' => 1]]);
 		$this->set(compact('items'));
 	}
 
@@ -217,7 +221,7 @@ class PurchaseHistoriesController extends AppController {
 			$options = array('conditions' => array('PurchaseHistory.' . $this->PurchaseHistory->primaryKey => $id));
 			$this->request->data = $this->PurchaseHistory->find('first', $options);
 		}
-		$items = $this->PurchaseHistory->Item->find('list');
+		$items = $this->PurchaseHistory->Item->find('list', ['conditions' => ['Item.type' => 1]]);
 		$this->set(compact('items'));
 	}
 

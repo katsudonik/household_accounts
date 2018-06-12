@@ -1,7 +1,7 @@
 <?php echo $this->element('term_selector', ['url' => '/purchase_schedules/?ym=']); ?>
 
 <div>
-	<h2><?php echo __('Purchase Schedules'); ?></h2>
+	<h2 class="trn"><?php echo __('Purchase Schedules'); ?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<thead>
 	<tr>

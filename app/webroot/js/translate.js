@@ -158,7 +158,76 @@ $(function() {
     "Schedule Price": {
         jp: "予算",
         en: "Schedule Price"
-    },  };
+    },
+    "target_date": {
+        jp: "対象日",
+        en: "target date"
+    },
+    "target_start_date": {
+        jp: "対象期間開始日",
+        en: "target_start_date"
+    },
+    "target_end_date": {
+        jp: "対象期間終了日",
+        en: "target_end_date"
+    },
+    "point": {
+        jp: "特定日",
+        en: "point"
+    },
+    "term": {
+        jp: "期間",
+        en: "term"
+    },
+    "Purchase Schedules": {
+        jp: "購入予定",
+        en: "Purchase Schedules"
+    },
+    "Income Histories": {
+        jp: "収入履歴",
+        en: "Income Histories"
+    },
+    "Income Schedules": {
+        jp: "収入予定",
+        en: "Income Schedules"
+    },
+    "Add Purchase History": {
+        jp: "購入履歴新規登録",
+        en: "Add Purchase History"
+    },
+    "Add Purchase Schedule": {
+        jp: "購入予定新規登録",
+        en: "Add Purchase Schedule"
+    },
+    "Add Income History": {
+        jp: "収入履歴新規登録",
+        en: "Add Income History"
+    },
+    "Add Income Schedule": {
+        jp: "収入予定新規登録",
+        en: "Add Income Schedule"
+    },
+    "Edit Purchase Schedule": {
+        jp: "購入予定新規編集",
+        en: "Add Purchase Schedule"
+    },
+    "Edit Income History": {
+        jp: "収入履歴新規編集",
+        en: "Add Income History"
+    },
+    "Edit Income Schedule": {
+        jp: "収入予定新規編集",
+        en: "Add Income Schedule"
+    },
+    "Add Item": {
+        jp: "項目新規登録",
+        en: "Add Item"
+    },
+    "Edit Item": {
+        jp: "項目編集",
+        en: "Add Item"
+    },
+    };
 
   var _t = $('body').translate({lang: "jp", t: t});
   var str = _t.g("translate");

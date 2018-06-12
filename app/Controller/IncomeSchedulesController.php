@@ -55,7 +55,7 @@ class IncomeSchedulesController extends AppController {
 				$this->Flash->error(__('The income schedule could not be saved. Please, try again.'));
 			}
 		}
-		$items = $this->IncomeSchedule->Item->find('list');
+		$items = $this->IncomeSchedule->Item->find('list', ['conditions' => ['Item.type' => 2]]);
 		$this->set(compact('items'));
 	}
 
@@ -81,7 +81,7 @@ class IncomeSchedulesController extends AppController {
 			$options = array('conditions' => array('IncomeSchedule.' . $this->IncomeSchedule->primaryKey => $id));
 			$this->request->data = $this->IncomeSchedule->find('first', $options);
 		}
-		$items = $this->IncomeSchedule->Item->find('list');
+		$items = $this->IncomeSchedule->Item->find('list', ['conditions' => ['Item.type' => 2]]);
 		$this->set(compact('items'));
 	}
 

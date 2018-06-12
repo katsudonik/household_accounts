@@ -55,7 +55,7 @@ class IncomeHistoriesController extends AppController {
 				$this->Flash->error(__('The income history could not be saved. Please, try again.'));
 			}
 		}
-		$items = $this->IncomeHistory->Item->find('list');
+		$items = $this->IncomeHistory->Item->find('list', ['conditions' => ['Item.type' => 2]]);
 		$this->set(compact('items'));
 	}
 
@@ -81,7 +81,7 @@ class IncomeHistoriesController extends AppController {
 			$options = array('conditions' => array('IncomeHistory.' . $this->IncomeHistory->primaryKey => $id));
 			$this->request->data = $this->IncomeHistory->find('first', $options);
 		}
-		$items = $this->IncomeHistory->Item->find('list');
+		$items = $this->IncomeHistory->Item->find('list', ['conditions' => ['Item.type' => 2]]);
 		$this->set(compact('items'));
 	}
 
