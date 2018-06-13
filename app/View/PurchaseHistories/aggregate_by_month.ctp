@@ -20,7 +20,7 @@
 			<?php echo h($purchaseHistory['name']); ?>
 		</td>
 		<td>
-			<?php echo $this->Html->link(__(h($purchaseHistory['schedule_price'])), array('controller' => 'purchase_schedules', 'action' => 'edit', $purchaseHistory['schedule_id'])); ?>
+			<?php echo h($purchaseHistory['schedule_price']); ?>
 		</td>
 		<td>
 			<?php echo h($purchaseHistory['price']); ?>

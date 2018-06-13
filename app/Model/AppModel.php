@@ -31,4 +31,16 @@ App::uses('Model', 'Model');
  */
 class AppModel extends Model {
 
+
+    public function getStatement($model, $type = 'all', $groups = [], $conditions = [], $fields = []){
+        $db = $this->getDataSource();
+        $params = [
+            'table' => $db->fullTableName($model),
+            'alias' => get_class($model) . "Sub",
+            'conditions' => $conditions,
+            'fields' => $fields,
+            'group' => $groups,
+        ];
+        return $db->buildStatement($params, $model);
+    }
 }
