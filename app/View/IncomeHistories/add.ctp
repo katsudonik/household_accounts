@@ -8,8 +8,10 @@
 		echo $this->Form->input('price');
 		echo $this->Form->input('memo');
 		?>
+		<a class="submit trn" href="javascript:void(0)">Submit</a>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
+<?php echo $this->Form->end(); ?>
+
 </div>
 
 <script>

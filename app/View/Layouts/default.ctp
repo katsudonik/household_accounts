@@ -45,6 +45,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		echo $this->fetch('css');
 		echo $this->Html->script('jquery.translate');
 		echo $this->Html->script('translate');
+		echo $this->Html->script('submit');
 		echo $this->fetch('script');
 		echo $this->Html->script('dropdown');
 	?>
