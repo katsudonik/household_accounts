@@ -171,6 +171,18 @@ $(function() {
         jp: "対象期間終了日",
         en: "target_end_date"
     },
+    "Target Date": {
+        jp: "対象日",
+        en: "target date"
+    },
+    "Target Start Date": {
+        jp: "対象期間開始日",
+        en: "target_start_date"
+    },
+    "Target End Date": {
+        jp: "対象期間終了日",
+        en: "target_end_date"
+    },
     "schedule_end_date": {
         jp: "予定対象期間終了日（明日～指定日）",
         en: "target_end_date"
@@ -262,6 +274,10 @@ $(function() {
     "toal": {
         jp: "総計",
         en: "toal"
+    },
+    "Income Date": {
+        jp: "収入日",
+        en: "income_date"
     },
     };
 
