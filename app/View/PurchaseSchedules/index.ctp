@@ -33,7 +33,6 @@
 		<td><?php echo h($purchaseSchedule['PurchaseSchedule']['store_name']); ?>&nbsp;</td>
 		<td><?php echo h($purchaseSchedule['PurchaseSchedule']['purchases']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $purchaseSchedule['PurchaseSchedule']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $purchaseSchedule['PurchaseSchedule']['id'])); ?>
 			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $purchaseSchedule['PurchaseSchedule']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $purchaseSchedule['PurchaseSchedule']['id']))); ?>
 		</td>

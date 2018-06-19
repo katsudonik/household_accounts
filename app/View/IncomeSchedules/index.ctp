@@ -11,8 +11,6 @@
 			<th><?php echo $this->Paginator->sort('target_end_date'); ?></th>
 			<th><?php echo $this->Paginator->sort('price'); ?></th>
 			<th><?php echo $this->Paginator->sort('memo'); ?></th>
-			<th><?php echo $this->Paginator->sort('created'); ?></th>
-			<th><?php echo $this->Paginator->sort('modified'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	</thead>
@@ -28,10 +26,7 @@
 		<td><?php echo h($incomeSchedule['IncomeSchedule']['target_end_date']); ?>&nbsp;</td>
 		<td><?php echo h($incomeSchedule['IncomeSchedule']['price']); ?>&nbsp;</td>
 		<td><?php echo h($incomeSchedule['IncomeSchedule']['memo']); ?>&nbsp;</td>
-		<td><?php echo h($incomeSchedule['IncomeSchedule']['created']); ?>&nbsp;</td>
-		<td><?php echo h($incomeSchedule['IncomeSchedule']['modified']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $incomeSchedule['IncomeSchedule']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $incomeSchedule['IncomeSchedule']['id'])); ?>
 			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $incomeSchedule['IncomeSchedule']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $incomeSchedule['IncomeSchedule']['id']))); ?>
 		</td>
