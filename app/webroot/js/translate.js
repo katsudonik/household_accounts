@@ -62,6 +62,14 @@ $(function() {
         jp: "商品",
         en: "purchases"
     },
+    "Store Name": {
+        jp: "店名",
+        en: "store name"
+    },
+    "Purchases": {
+        jp: "商品",
+        en: "purchases"
+    },
     Purchase_Schedules: {
         jp: "購入予定",
         en: "Purchase_Schedules"
@@ -130,7 +138,11 @@ $(function() {
         jp: "備考",
         en: "memo"
     },
-    Actions: {
+    Memo: {
+        jp: "備考",
+        en: "Memo"
+    },
+    "Actions": {
         jp: "操作",
         en: "Actions"
     },
@@ -152,6 +164,10 @@ $(function() {
         en: "chart"
     },
     type: {
+        jp: "種別",
+        en: "type"
+    },
+    "Type": {
         jp: "種別",
         en: "type"
     },

@@ -6,9 +6,7 @@
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
 			<th><?php echo $this->Paginator->sort('type'); ?></th>
-			<th><?php echo $this->Paginator->sort('created'); ?></th>
-			<th><?php echo $this->Paginator->sort('modified'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
+			<th class="actions trn"><?php echo __('Actions'); ?></th>
 	</tr>
 	</thead>
 	<tbody>
@@ -17,8 +15,6 @@
 		<td><?php echo h($item['Item']['id']); ?></td>
 		<td><?php echo h($item['Item']['name']); ?>&nbsp;</td>
 		<td><?php echo h($item['Item']['type']); ?>&nbsp;</td>
-		<td><?php echo h($item['Item']['created']); ?>&nbsp;</td>
-		<td><?php echo h($item['Item']['modified']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $item['Item']['id'])); ?>
 			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $item['Item']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $item['Item']['id']))); ?>

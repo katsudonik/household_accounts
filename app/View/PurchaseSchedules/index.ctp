@@ -14,7 +14,7 @@
 			<th><?php echo $this->Paginator->sort('memo'); ?></th>
 			<th><?php echo $this->Paginator->sort('store_name'); ?></th>
 			<th><?php echo $this->Paginator->sort('purchases'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
+			<th class="actions trn"><?php echo __('Actions'); ?></th>
 
 	</tr>
 	</thead>

@@ -9,7 +9,7 @@
 			<th><?php echo $this->Paginator->sort('income_date'); ?></th>
 			<th><?php echo $this->Paginator->sort('price'); ?></th>
 			<th><?php echo $this->Paginator->sort('memo'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
+			<th class="actions trn"><?php echo __('Actions'); ?></th>
 	</tr>
 	</thead>
 	<tbody>
