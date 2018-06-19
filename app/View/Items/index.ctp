@@ -14,7 +14,7 @@
 	<tbody>
 	<?php foreach ($items as $item): ?>
 	<tr>
-		<td><?php echo $this->Html->link(__(h($item['Item']['id'])), array('action' => 'view', $item['Item']['id'])); ?></td>
+		<td><?php echo h($item['Item']['id']); ?></td>
 		<td><?php echo h($item['Item']['name']); ?>&nbsp;</td>
 		<td><?php echo h($item['Item']['type']); ?>&nbsp;</td>
 		<td><?php echo h($item['Item']['created']); ?>&nbsp;</td>

@@ -25,7 +25,7 @@
 	<tr>
 
 		<td>
-			<?php echo $this->Html->link(__(h($purchaseHistory['PurchaseHistory']['id'])), array('action' => 'view', $purchaseHistory['PurchaseHistory']['id'])); ?>
+			<?php echo h($purchaseHistory['PurchaseHistory']['id']); ?>
 			<?php echo $this->Form->input('id', ['value' => h($purchaseHistory['PurchaseHistory']['id']), 'name' => 'data[PurchaseHistory][id][]', 'class' => '_id']); ?>
 		</td>
 		<td>
