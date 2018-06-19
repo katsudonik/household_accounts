@@ -19,7 +19,7 @@
 	<tr>
 		<td><?php echo h($incomeHistory['IncomeHistory']['id']); ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($incomeHistory['Item']['name'], array('controller' => 'items', 'action' => 'view', $incomeHistory['Item']['id'])); ?>
+			<?php echo $incomeHistory['Item']['name']; ?>
 		</td>
 		<td><?php echo h($incomeHistory['IncomeHistory']['income_date']); ?>&nbsp;</td>
 		<td><?php echo h($incomeHistory['IncomeHistory']['price']); ?>&nbsp;</td>

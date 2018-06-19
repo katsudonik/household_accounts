@@ -23,7 +23,7 @@
 	<tr>
 		<td><?php echo h($purchaseSchedule['PurchaseSchedule']['id']); ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($purchaseSchedule['Item']['name'], array('controller' => 'items', 'action' => 'view', $purchaseSchedule['Item']['id'])); ?>
+			<?php echo $purchaseSchedule['Item']['name']; ?>
 		</td>
 		<td><?php echo h($purchaseSchedule['PurchaseSchedule']['target_date']); ?>&nbsp;</td>
 		<td><?php echo h($purchaseSchedule['PurchaseSchedule']['target_start_date']); ?>&nbsp;</td>

@@ -21,7 +21,7 @@
 	<tr>
 		<td><?php echo h($incomeSchedule['IncomeSchedule']['id']); ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($incomeSchedule['Item']['name'], array('controller' => 'items', 'action' => 'view', $incomeSchedule['Item']['id'])); ?>
+			<?php echo $incomeSchedule['Item']['name']; ?>
 		</td>
 		<td><?php echo h($incomeSchedule['IncomeSchedule']['target_date']); ?>&nbsp;</td>
 		<td><?php echo h($incomeSchedule['IncomeSchedule']['target_start_date']); ?>&nbsp;</td>

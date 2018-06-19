@@ -29,7 +29,7 @@
 			<?php echo $this->Form->input('id', ['value' => h($purchaseHistory['PurchaseHistory']['id']), 'name' => 'data[PurchaseHistory][id][]', 'class' => '_id']); ?>
 		</td>
 		<td>
-			<span><span class="item_id_before"><?php echo $purchaseHistory['PurchaseHistory']['item_id']; ?></span><?php echo $this->Html->link($purchaseHistory['Item']['name'], array('controller' => 'items', 'action' => 'view', $purchaseHistory['Item']['id'])); ?></span>
+			<span><span class="item_id_before"><?php echo $purchaseHistory['PurchaseHistory']['item_id']; ?></span><?php echo $purchaseHistory['Item']['name']; ?></span>
 			<?php echo $this->Form->input('item_id', ['selected' => $purchaseHistory['PurchaseHistory']['item_id'], 'name' => 'data[PurchaseHistory][item_id][]', 'class' => 'item_name', 'label' => false,]); ?>
 		</td>
 		<td class="target_date" >
