@@ -54,17 +54,6 @@ $(function(){
 	    });
 	});
 
-	$('.submit').on('click',function(){
-		$(this).closest('form').submit();
-	});
-
-	$('input').on("keydown",function(e){
-		if(e.ctrlKey && e.keyCode == 81){
-			$(this).closest('form').submit();
-		}
-	});
-
-
 });
 
 

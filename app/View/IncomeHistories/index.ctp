@@ -9,9 +9,7 @@
 			<th><?php echo $this->Paginator->sort('income_date'); ?></th>
 			<th><?php echo $this->Paginator->sort('price'); ?></th>
 			<th><?php echo $this->Paginator->sort('memo'); ?></th>
-			<th><?php echo $this->Paginator->sort('created'); ?></th>
-			<th><?php echo $this->Paginator->sort('modified'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
+			<th class="actions trn"><?php echo __('Actions'); ?></th>
 	</tr>
 	</thead>
 	<tbody>
@@ -19,15 +17,12 @@
 	<tr>
 		<td><?php echo h($incomeHistory['IncomeHistory']['id']); ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($incomeHistory['Item']['name'], array('controller' => 'items', 'action' => 'view', $incomeHistory['Item']['id'])); ?>
+			<?php echo $incomeHistory['Item']['name']; ?>
 		</td>
 		<td><?php echo h($incomeHistory['IncomeHistory']['income_date']); ?>&nbsp;</td>
 		<td><?php echo h($incomeHistory['IncomeHistory']['price']); ?>&nbsp;</td>
 		<td><?php echo h($incomeHistory['IncomeHistory']['memo']); ?>&nbsp;</td>
-		<td><?php echo h($incomeHistory['IncomeHistory']['created']); ?>&nbsp;</td>
-		<td><?php echo h($incomeHistory['IncomeHistory']['modified']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $incomeHistory['IncomeHistory']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $incomeHistory['IncomeHistory']['id'])); ?>
 			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $incomeHistory['IncomeHistory']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $incomeHistory['IncomeHistory']['id']))); ?>
 		</td>

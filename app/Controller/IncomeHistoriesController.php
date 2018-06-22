@@ -13,7 +13,11 @@ class IncomeHistoriesController extends AppController {
  *
  * @var array
  */
-	public $components = array('Paginator');
+	public $components = array(
+          'Paginator' => array(
+            'order' => array('IncomeHistory.income_date' => 'asc')
+        )
+);
 
 /**
  * index method

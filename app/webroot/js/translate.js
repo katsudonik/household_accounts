@@ -62,6 +62,14 @@ $(function() {
         jp: "商品",
         en: "purchases"
     },
+    "Store Name": {
+        jp: "店名",
+        en: "store name"
+    },
+    "Purchases": {
+        jp: "商品",
+        en: "purchases"
+    },
     Purchase_Schedules: {
         jp: "購入予定",
         en: "Purchase_Schedules"
@@ -130,7 +138,11 @@ $(function() {
         jp: "備考",
         en: "memo"
     },
-    Actions: {
+    Memo: {
+        jp: "備考",
+        en: "Memo"
+    },
+    "Actions": {
         jp: "操作",
         en: "Actions"
     },
@@ -155,6 +167,10 @@ $(function() {
         jp: "種別",
         en: "type"
     },
+    "Type": {
+        jp: "種別",
+        en: "type"
+    },
     "Schedule Price": {
         jp: "予算",
         en: "Schedule Price"
@@ -168,6 +184,18 @@ $(function() {
         en: "target_start_date"
     },
     "target_end_date": {
+        jp: "対象期間終了日",
+        en: "target_end_date"
+    },
+    "Target Date": {
+        jp: "対象日",
+        en: "target date"
+    },
+    "Target Start Date": {
+        jp: "対象期間開始日",
+        en: "target_start_date"
+    },
+    "Target End Date": {
         jp: "対象期間終了日",
         en: "target_end_date"
     },
@@ -262,6 +290,10 @@ $(function() {
     "toal": {
         jp: "総計",
         en: "toal"
+    },
+    "Income Date": {
+        jp: "収入日",
+        en: "income_date"
     },
     };
 

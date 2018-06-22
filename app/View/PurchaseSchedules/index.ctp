@@ -14,7 +14,7 @@
 			<th><?php echo $this->Paginator->sort('memo'); ?></th>
 			<th><?php echo $this->Paginator->sort('store_name'); ?></th>
 			<th><?php echo $this->Paginator->sort('purchases'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
+			<th class="actions trn"><?php echo __('Actions'); ?></th>
 
 	</tr>
 	</thead>
@@ -23,7 +23,7 @@
 	<tr>
 		<td><?php echo h($purchaseSchedule['PurchaseSchedule']['id']); ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($purchaseSchedule['Item']['name'], array('controller' => 'items', 'action' => 'view', $purchaseSchedule['Item']['id'])); ?>
+			<?php echo $purchaseSchedule['Item']['name']; ?>
 		</td>
 		<td><?php echo h($purchaseSchedule['PurchaseSchedule']['target_date']); ?>&nbsp;</td>
 		<td><?php echo h($purchaseSchedule['PurchaseSchedule']['target_start_date']); ?>&nbsp;</td>
@@ -33,7 +33,6 @@
 		<td><?php echo h($purchaseSchedule['PurchaseSchedule']['store_name']); ?>&nbsp;</td>
 		<td><?php echo h($purchaseSchedule['PurchaseSchedule']['purchases']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $purchaseSchedule['PurchaseSchedule']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $purchaseSchedule['PurchaseSchedule']['id'])); ?>
 			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $purchaseSchedule['PurchaseSchedule']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $purchaseSchedule['PurchaseSchedule']['id']))); ?>
 		</td>
