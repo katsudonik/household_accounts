@@ -10,11 +10,12 @@
 	</tr>
 	</thead>
 	<tbody>
+        <?php $types = Configure::read("item.type"); ?>
 	<?php foreach ($items as $item): ?>
 	<tr>
 		<td><?php echo h($item['Item']['id']); ?></td>
 		<td><?php echo h($item['Item']['name']); ?>&nbsp;</td>
-		<td><?php echo h($item['Item']['type']); ?>&nbsp;</td>
+		<td><?php echo h($types[$item['Item']['type']]); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $item['Item']['id'])); ?>
 			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $item['Item']['id']), array('confirm' => __('Are you sure you want to delete # %s?', $item['Item']['id']))); ?>
