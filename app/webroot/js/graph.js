@@ -1,46 +1,67 @@
-function aggregate_c3(){
-	$(function(){
-		function render_c3(data){
-			data['aggregateItemHistories'].forEach(function(record) {
-	              c3.generate({
-	            	  bindto: '#chart_' + record['id'],
-	            	  size: {
-	            	        height: 120,
-	            	        width: 120
-	            	  },
-	                  data: {
-	                      type : 'pie',
-	                      columns: [
-	                          ['price', record['price']],
-	                          ['remain', record['remain']],
-	                      ],
-	                  }
-	              });
-	        });
-		}
+//var = cache_data;
 
-		$.ajax({
-	        url:'/purchase_histories/aggregate_c3',
-	        type:'GET',
-	        data:{
-	            'ym':$('.ym').val(),
-	        }
-	    })
-	    .done( (data) => {
-	        console.log(data);
-	        render_c3(data);
-	    })
-	    .fail( (data) => {
-	        $('.result').html(data);
-	        console.log(data);
-	    });
-	});
+function aggregate_c3(){
+  $(function(){
+    function render_c3(data){
+      $('.list').empty();
+      data['aggregateItemHistories'].forEach(function(record) {
+        $('.list').append("<tr><td>" + record['name'] + "</td><td>" + record['schedule_price'] + "</td><td>" + record['price'] + "</td><td>" + record['remain'] + "</td><td><div id=chart_"  + record['id'] + "></div></td></tr>"); 
+      });
+      
+      _data = data['aggregateSumHistory']; 
+      $('.list').append("<tr><td>Sum</td><td><b>" + _data['schedule_price'] + "</b></td><td><b>" + _data['price'] + "</b></td><td><b>" + _data['remain'] + "</b></td></tr>");
+    }
+    
+    $.ajax({
+      url:'/purchase_histories/aggregate_by_item',
+      type:'GET',
+      data:{
+          'ym':$('.term_selector').val(),
+          'term_type': 'm',
+      }
+    })
+    .done( (data) => {
+        localStorage.setItem('cache_data', JSON.stringify(data));
+        console.log(data);
+        render_c3(data);
+    })
+    .fail( (data) => {
+        $('.result').html(data);
+        console.log(data);
+    });
+  });
+}
+
+function aggregate_c3_pie(){
+  $(function(){
+    function render_c3_pie(data){
+      data['aggregateItemHistories'].forEach(function(record) {
+        c3.generate({
+            bindto: '#chart_' + record['id'],
+            size: {
+                  height: 120,
+                  width: 120
+            },
+            data: {
+                type : 'pie',
+                columns: [
+                    ['price', record['price']],
+                    ['remain', record['remain']],
+                ],
+            }
+        });
+       });
+      }
+
+      render_c3_pie(JSON.parse(localStorage.getItem('cache_data')));
+  });
 }
 
 function aggregate_c3_item(){
 	$(function(){
   		function render_c3(data){
 	        	columns = [];
+                        $('.list').empty();
 	                data['aggregateItemHistories'].forEach(function(record) {
                                 $('.list').append("<tr><td>" + record['name'] + "</td><td>" + record['price'] + "</td></tr>"); 
 	            	 	columns.push([record['name'], record['price']]);
@@ -60,7 +81,8 @@ function aggregate_c3_item(){
 	        url:'/purchase_histories/aggregate_by_item',
 	        type:'GET',
 	        data:{
-	            'y':$('.y').val(),
+                    'term_type': 'y',
+                    'y':$('.term_selector').val(),
 	        }
 	    })
 	    .done( (data) => {
@@ -89,7 +111,7 @@ function aggregate_c3_all(){
 	        url:'/purchase_histories/aggregate_timeline',
 	        type:'GET',
 	        data:{
-	            'y':$('.y').val(),
+                    'y':$('.term_selector').val(),
 	        }
 	    })
 	    .done( (data) => {

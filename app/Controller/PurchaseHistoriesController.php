@@ -76,6 +76,8 @@ class PurchaseHistoriesController extends AppController {
 	 * 年集計一覧
 	 */
 	public function aggregate_by_year(){
+	    $year = $this->_param('y', date('Y'));
+	    $this->set('y', $year);
 	}
 
 	/*
@@ -83,19 +85,20 @@ class PurchaseHistoriesController extends AppController {
 	 */
 	public function aggregate_by_month(){
 	    $ym = $this->_param('ym', date('Y-m'));
-
-	    $aggregateItemHistories = $this->Item->agg_of_month($ym);
-	    $this->set('aggregateItemHistories', $aggregateItemHistories);
-	    $this->set('aggregateSumHistory', $this->Item->aggregate_monthly_purchase($aggregateItemHistories));
 	    $this->set('ym', $ym);
 	}
 
     /*
-     * 年次項目別消費額表
+     * 年次項目別消費額
      */
 	public function aggregate_by_item(){
-	    $year = $this->_param('y', date('Y'));
-	    $aggregateItemHistories = $this->Item->agg_of_year($year, [], ['name', 'price',]);
+	    if($this->_param('term_type', 'y') == 'y'){
+	      $target = $this->_param('y', date('Y'));
+	      $aggregateItemHistories = $this->Item->agg_of_year($target, [], ['name', 'price',]);
+            }else{
+	      $target = $this->_param('ym', date('Y-m'));
+	      $aggregateItemHistories = $this->Item->agg_of_month($target);
+            }
 
 	    $this->set(array(
 	        'aggregateItemHistories' => $aggregateItemHistories,

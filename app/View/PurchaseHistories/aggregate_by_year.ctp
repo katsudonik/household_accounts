@@ -24,6 +24,13 @@
 
 <?php echo $this->Html->script('graph'); ?>
 <script>
-aggregate_c3_item();
-aggregate_c3_all();
+  aggregate_c3_item();
+  aggregate_c3_all();
+  
+  $(function(){
+          $('.term_selector').change(function() {
+            aggregate_c3_item();
+            aggregate_c3_all();
+          });
+  });
 </script>
