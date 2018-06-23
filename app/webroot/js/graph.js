@@ -39,23 +39,25 @@ function aggregate_c3(){
 
 function aggregate_c3_item(){
 	$(function(){
-		function render_c3(data){
-	        columns = [];
-	        data['aggregateItemHistories'].forEach(function(record) {
-	        	columns.push([record['name'], record['price']]);
-	        });
+  		function render_c3(data){
+	        	columns = [];
+	                data['aggregateItemHistories'].forEach(function(record) {
+                                $('.list').append("<tr><td>" + record['name'] + "</td><td>" + record['price'] + "</td></tr>"); 
+	            	 	columns.push([record['name'], record['price']]);
+	                });
+                        $('.list').append("<tr><td>Sum</td><td><b>" + data['aggregateSumHistory']['price'] + "</b></td></tr>");
 
-	        c3.generate({
-	        	bindto: '#chart_item',
-	  	        data: {
-	  	            columns: columns,
-	  	            type : 'pie',
-	            }
-	        });
+	            	c3.generate({
+	            	 	bindto: '#chart_item',
+	            	         data: {
+	            	             columns: columns,
+	            	             type : 'pie',
+	            	     }
+	            	});
 		}
 
 	    $.ajax({
-	        url:'/purchase_histories/aggregate_c3_item',
+	        url:'/purchase_histories/aggregate_by_item',
 	        type:'GET',
 	        data:{
 	            'y':$('.y').val(),
@@ -84,7 +86,7 @@ function aggregate_c3_all(){
 		}
 
 	    $.ajax({
-	        url:'/purchase_histories/aggregate_c3_all',
+	        url:'/purchase_histories/aggregate_timeline',
 	        type:'GET',
 	        data:{
 	            'y':$('.y').val(),

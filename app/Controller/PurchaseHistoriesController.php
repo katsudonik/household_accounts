@@ -27,8 +27,8 @@ class PurchaseHistoriesController extends AppController {
 
 	const API_ACTIONS = [
 	    'aggregate_c3',
-	    'aggregate_c3_item',
-	    'aggregate_c3_all',
+	    'aggregate_by_item',
+	    'aggregate_timeline',
 	    'delete_ajax',
 	];
 
@@ -76,12 +76,6 @@ class PurchaseHistoriesController extends AppController {
 	 * 年集計一覧
 	 */
 	public function aggregate_by_year(){
-	    $this->PurchaseHistory->recursive = 0;
-
-	    $year = $this->_param('y', date('Y'));
-	    $aggregateItemHistories = $this->Item->agg_of_year($year, [], ['name', 'price',]);
-	    $this->set('aggregateItemHistories', $aggregateItemHistories);
-	    $this->set('aggregateSumHistory', $this->Item->aggregate_monthly_purchase($aggregateItemHistories));
 	}
 
 	/*
@@ -99,21 +93,21 @@ class PurchaseHistoriesController extends AppController {
     /*
      * 年次項目別消費額表
      */
-	public function aggregate_c3_item(){
+	public function aggregate_by_item(){
 	    $year = $this->_param('y', date('Y'));
 	    $aggregateItemHistories = $this->Item->agg_of_year($year, [], ['name', 'price',]);
-	    $this->set('aggregateItemHistories', $aggregateItemHistories);
 
 	    $this->set(array(
 	        'aggregateItemHistories' => $aggregateItemHistories,
-	        '_serialize' => array('aggregateItemHistories')
+                'aggregateSumHistory' => $this->Item->aggregate_monthly_purchase($aggregateItemHistories),
+	        '_serialize' => array('aggregateItemHistories', 'aggregateSumHistory')
 	    ));
 	}
 
 	/*
 	 * 年間項目別消費額時系列グラフ
 	 */
-	public function aggregate_c3_all() {
+	public function aggregate_timeline() {
 	    $year = $this->_param('y', date('Y'));
 	    $start = strtotime($year . '-01-01');
 	    $end = strtotime($year . '-12-01');

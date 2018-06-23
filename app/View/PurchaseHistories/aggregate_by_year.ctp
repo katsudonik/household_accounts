@@ -9,32 +9,12 @@
 			<th><?php echo $this->Paginator->sort('price'); ?></th>
 	</tr>
 	</thead>
-	<tbody>
+	<tbody class="list">
 
-	<?php foreach ($aggregateItemHistories as $purchaseHistory): ?>
-	<tr>
-		<td>
-			<?php echo h($purchaseHistory['name']); ?>
-		</td>
-		<td>
-			<?php echo h($purchaseHistory['price']); ?>
-		</td>
-	</tr>
-<?php endforeach; ?>
-	<tr>
-		<td>
-			<b>
-				Sum
-			</b>
-		</td>
-		<td>
-			<b>
-				<?php echo h($aggregateSumHistory['price']); ?>
-			</b>
-		</td>
-	</tr>
 	</tbody>
 	</table>
+
+
 
 </div>
 
