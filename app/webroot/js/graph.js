@@ -1,4 +1,7 @@
-//var = cache_data;
+
+function display_loading(){
+    $('.list').append("<img src=\"/img/loading01_r3_c5.gif\"/>");
+}
 
 function aggregate_c3(){
   $(function(){
@@ -12,6 +15,7 @@ function aggregate_c3(){
       $('.list').append("<tr><td>Sum</td><td><b>" + _data['schedule_price'] + "</b></td><td><b>" + _data['price'] + "</b></td><td><b>" + _data['remain'] + "</b></td></tr>");
     }
     
+    display_loading();
     $.ajax({
       url:'/purchase_histories/aggregate_by_item',
       type:'GET',
@@ -77,6 +81,7 @@ function aggregate_c3_item(){
 	            	});
 		}
 
+            display_loading();
 	    $.ajax({
 	        url:'/purchase_histories/aggregate_by_item',
 	        type:'GET',
