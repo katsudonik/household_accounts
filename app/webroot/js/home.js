@@ -37,21 +37,23 @@ $(function(){
 	});
 
 	$('.delete').on('click',function(){
-		$tr = $(this).closest('tr');
-	    $.ajax({
-	        url:'/purchase_histories/delete_ajax',
-	        type:'POST',
-	        data:{
-	        	'id' : $(this).data('id'),
-	        }
-	    })
-	    .done( (data) => {
-	        console.log(data);
-	        $tr.remove();
-	    })
-	    .fail( (data) => {
-	        console.log(data);
-	    });
+            if(window.confirm('削除しますか？')){
+              $tr = $(this).closest('tr');
+	      $.ajax({
+	          url:'/purchase_histories/delete_ajax',
+	          type:'POST',
+	          data:{
+	          	'id' : $(this).data('id'),
+	          }
+	      })
+	      .done( (data) => {
+	          console.log(data);
+	          $tr.remove();
+	      })
+	      .fail( (data) => {
+	          console.log(data);
+	      });
+	    }
 	});
 
 });
