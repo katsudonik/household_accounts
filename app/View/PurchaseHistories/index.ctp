@@ -19,13 +19,13 @@
 			<th class="actions"><b class="trn">Actions</b></th>
 	</tr>
 	</thead>
-	<tbody>
+	<tbody class="list">
 
 	<?php foreach ($purchaseHistories as $i => $purchaseHistory): ?>
 	<tr>
 
-		<td>
-			<?php echo h($purchaseHistory['PurchaseHistory']['id']); ?>
+		<td class="td_id">
+			<span><?php echo h($purchaseHistory['PurchaseHistory']['id']); ?></span>
 			<?php echo $this->Form->input('id', ['value' => h($purchaseHistory['PurchaseHistory']['id']), 'name' => 'data[PurchaseHistory][id][]', 'class' => '_id']); ?>
 		</td>
 		<td>
@@ -60,30 +60,12 @@
 		</td>
 	</tr>
 <?php endforeach; ?>
-<tr>
-	<td>
-		<?php echo $this->Html->link(__('+'), array('action' => 'add')); ?>
-	</td>
-	<td>
-	</td>
-	<td>
-	</td>
-	<td>
-	</td>
-	<td>
-	</td>
-	<td>
-	</td>
-	<td>
-	</td>
-	<td>
-	</td>
-</tr>
 	</tbody>
 	</table>
 <?php echo $this->Form->end(); ?>
 </div>
 
+		<a class="add trn" href="javascript:void(0)">+</a>
 
 <script>
 $(function() {
@@ -99,7 +81,29 @@ $(function(){
         $('.term_selector').change(function() {
               location.href = $(this).data('url') + $(this).val();;
         });
+
+
+	$('.add').on('click',function(){
+	     $tr = $('.list tr:last-child').clone();
+             $tr.find('span').remove();
+             $tr.find('.actions').empty();
+             $tr.find('.td_id input').before("<span style=\"color:red;\">New</span>");
+             $tr.find('input').val('');
+             $tr.find('input').show();
+             $tr.find('select').show();
+             $tr.appendTo('.list');
+
+             cnt = $('.date').length;
+             $tr.find('.date').attr('id', '#datepicker_' + cnt);
+             $tr.find('.date').removeClass('hasDatepicker');
+             $tr.find('.date').datepicker({dateFormat: 'yy-mm-dd'});
+	});
 });
+
+
+
+
+
 </script>
 
 <style>

@@ -47,7 +47,7 @@ $(function(){
 	    })
 	    .done( (data) => {
 	        console.log(data);
-	        $tr.hide();
+	        $tr.remove();
 	    })
 	    .fail( (data) => {
 	        console.log(data);
