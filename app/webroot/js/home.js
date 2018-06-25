@@ -56,6 +56,12 @@ $(function(){
 	    }
 	});
 
+        $(document).on("click", ".delete_add", function () {
+            if(window.confirm('削除しますか？')){
+              $tr = $(this).closest('tr');
+                  $tr.remove();
+            }
+        });
 });
 
 

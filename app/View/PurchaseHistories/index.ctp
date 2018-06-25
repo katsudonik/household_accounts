@@ -88,7 +88,7 @@ $(function(){
              $tr.find('span').remove();
              $tr.find('.actions ._edit').remove();
              $tr.find('.actions .cancel').remove();
-             $tr.find('.actions .delete').remove();
+             $tr.find('.actions .delete').removeClass("delete").addClass("delete_add");  
              $tr.find('.actions .submit').show();
              $tr.find('.td_id input').before("<span style=\"color:red;\">New</span>");
              $tr.find('input').val('');
