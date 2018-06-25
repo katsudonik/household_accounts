@@ -84,22 +84,22 @@ $(function(){
 
 
 	$('.add').on('click',function(){
-	     $tr = $('.list tr:last-child').clone();
-             $tr.find('span').remove();
-             $tr.find('.actions ._edit').remove();
-             $tr.find('.actions .cancel').remove();
-             $tr.find('.actions .delete').removeClass("delete").addClass("delete_add");  
-             $tr.find('.actions .submit').show();
-             $tr.find('.td_id input').before("<span style=\"color:red;\">New</span>");
-             $tr.find('input').val('');
-             $tr.find('input').show();
-             $tr.find('select').show();
-             $tr.appendTo('.list');
-
              cnt = $('.date').length;
-             $tr.find('.date').attr('id', '#datepicker_' + cnt);
-             $tr.find('.date').removeClass('hasDatepicker');
-             $tr.find('.date').datepicker({dateFormat: 'yy-mm-dd'});
+             $.ajax({
+                    type: 'GET',
+                    url: '/files/tmp.html',
+                    dataType: 'html',
+                    success: function(data) {
+                        $data = $(data);
+                        $data.find('.date').attr('id', '#datepicker_' + cnt);
+                        $data.find('.date').removeClass('hasDatepicker');
+                        $data.find('.date').datepicker({dateFormat: 'yy-mm-dd'});
+                        $('.list').append($data);
+                    },
+                    error:function() {
+                        alert('問題がありました。');
+                    }
+             });
 	});
 });
 
