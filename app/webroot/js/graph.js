@@ -3,7 +3,24 @@ function display_loading(){
     $('.list').append("<img src=\"/img/loading01_r3_c5.gif\"/>");
 }
 
-
+function ajax_get(url, params, fnc){
+  display_loading();
+  $(function(){
+    $.ajax({
+      url: url,
+      type:'GET',
+      data: params
+    })
+    .done( (data) => {
+        console.log(data);
+        fnc(data);
+    })
+    .fail( (data) => {
+        $('.result').html(data);
+        console.log(data);
+    });
+  });
+}
 
 function render_c3(data){
   $(function(){
@@ -20,25 +37,10 @@ function render_c3(data){
 
 
 function aggregate_c3(fnc){
-  display_loading();
-  $(function(){
-    $.ajax({
-      url:'/purchase_histories/aggregate_by_item',
-      type:'GET',
-      data:{
+  ajax_get('/purchase_histories/aggregate_by_item', {
           'ym':$('.term_selector').val(),
           'term_type': 'm',
-      }
-    })
-    .done( (data) => {
-        console.log(data);
-        fnc(data);
-    })
-    .fail( (data) => {
-        $('.result').html(data);
-        console.log(data);
-    });
-  });
+      }, fnc);
 }
 
 function aggregate_c3_pie(){
@@ -66,44 +68,31 @@ function aggregate_c3_pie(){
   });
 }
 
-function aggregate_c3_item(){
+function render_c3_year(data){
 	$(function(){
-  		function render_c3(data){
-	        	columns = [];
+                        columns = [];
                         $('.list').empty();
-	                data['aggregateItemHistories'].forEach(function(record) {
-                                $('.list').append("<tr><td>" + record['name'] + "</td><td>" + record['price'] + "</td></tr>"); 
-	            	 	columns.push([record['name'], record['price']]);
-	                });
+                        data['aggregateItemHistories'].forEach(function(record) {
+                                $('.list').append("<tr><td>" + record['name'] + "</td><td>" + record['price'] + "</td></tr>");
+                                columns.push([record['name'], record['price']]);
+                        });
                         $('.list').append("<tr><td>Sum</td><td><b>" + data['aggregateSumHistory']['price'] + "</b></td></tr>");
 
-	            	c3.generate({
-	            	 	bindto: '#chart_item',
-	            	         data: {
-	            	             columns: columns,
-	            	             type : 'pie',
-	            	     }
-	            	});
-		}
-
-            display_loading();
-	    $.ajax({
-	        url:'/purchase_histories/aggregate_by_item',
-	        type:'GET',
-	        data:{
-                    'term_type': 'y',
-                    'y':$('.term_selector').val(),
-	        }
-	    })
-	    .done( (data) => {
-	        console.log(data);
-	        render_c3(data);
-	    })
-	    .fail( (data) => {
-	        $('.result').html(data);
-	        console.log(data);
-	    });
+                        c3.generate({
+                                bindto: '#chart_item',
+                                 data: {
+                                     columns: columns,
+                                     type : 'pie',
+                             }
+                        });
 	});
+}
+
+function aggregate_c3_item(){
+  ajax_get('/purchase_histories/aggregate_by_item', {
+          'y':$('.term_selector').val(),
+          'term_type': 'y',
+      }, render_c3_year);
 }
 
 function aggregate_c3_all(){
