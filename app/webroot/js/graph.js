@@ -3,19 +3,25 @@ function display_loading(){
     $('.list').append("<img src=\"/img/loading01_r3_c5.gif\"/>");
 }
 
-function aggregate_c3(){
+
+
+function render_c3(data){
   $(function(){
-    function render_c3(data){
+      localStorage.setItem('cache_data', JSON.stringify(data));
       $('.list').empty();
       data['aggregateItemHistories'].forEach(function(record) {
-        $('.list').append("<tr><td>" + record['name'] + "</td><td>" + record['schedule_price'] + "</td><td>" + record['price'] + "</td><td>" + record['remain'] + "</td><td><div id=chart_"  + record['id'] + "></div></td></tr>"); 
+        $('.list').append("<tr><td>" + record['name'] + "</td><td>" + record['schedule_price'] + "</td><td>" + record['price'] + "</td><td>" + record['remain'] + "</td><td><div id=chart_"  + record['id'] + "></div></td></tr>");
       });
-      
-      _data = data['aggregateSumHistory']; 
+
+      _data = data['aggregateSumHistory'];
       $('.list').append("<tr><td>Sum</td><td><b>" + _data['schedule_price'] + "</b></td><td><b>" + _data['price'] + "</b></td><td><b>" + _data['remain'] + "</b></td></tr>");
-    }
-    
-    display_loading();
+  });
+}
+
+
+function aggregate_c3(fnc){
+  display_loading();
+  $(function(){
     $.ajax({
       url:'/purchase_histories/aggregate_by_item',
       type:'GET',
@@ -25,9 +31,8 @@ function aggregate_c3(){
       }
     })
     .done( (data) => {
-        localStorage.setItem('cache_data', JSON.stringify(data));
         console.log(data);
-        render_c3(data);
+        fnc(data);
     })
     .fail( (data) => {
         $('.result').html(data);
