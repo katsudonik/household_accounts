@@ -24,13 +24,13 @@
 
 <?php echo $this->Html->script('graph'); ?>
 <script>
-  aggregate_c3_item();
-  aggregate_c3_all();
+  aggregate_by_year();
+  aggregate_to_line_chart();
   
   $(function(){
           $('.term_selector').change(function() {
-            aggregate_c3_item();
-            aggregate_c3_all();
+            aggregate_by_year();
+            aggregate_to_line_chart();
           });
   });
 </script>

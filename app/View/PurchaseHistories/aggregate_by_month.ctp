@@ -23,14 +23,14 @@
 
 <?php echo $this->Html->script('graph'); ?>
 <script>
-		aggregate_c3();
-$(function(){
-        $('.term_selector').change(function() {
-      	  aggregate_c3();
-        });
-	$('.chart').on('click',function(){
-      	  aggregate_c3_pie();
-	});
-});
+  aggregate_by_month();
+  $(function(){
+    $('.term_selector').change(function() {
+      aggregate_by_month();
+    });
+    $('.chart').on('click',function(){
+      render_pie_chart();
+    });
+  });
 
 </script>
