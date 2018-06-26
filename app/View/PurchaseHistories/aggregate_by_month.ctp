@@ -23,10 +23,10 @@
 
 <?php echo $this->Html->script('graph'); ?>
 <script>
-		aggregate_c3(render_c3);
+		aggregate_c3();
 $(function(){
         $('.term_selector').change(function() {
-      	  aggregate_c3(render_c3);
+      	  aggregate_c3();
         });
 	$('.chart').on('click',function(){
       	  aggregate_c3_pie();

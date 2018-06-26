@@ -40,7 +40,7 @@ function aggregate_c3(fnc){
   ajax_get('/purchase_histories/aggregate_by_item', {
           'ym':$('.term_selector').val(),
           'term_type': 'm',
-      }, fnc);
+      }, render_c3);
 }
 
 function aggregate_c3_pie(){
