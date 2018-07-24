@@ -157,11 +157,6 @@ class PurchaseHistoriesController extends AppController {
 
 	private function _index()
 	{
-	    $ym = $this->_param('ym', date('Y-m'));
-	    $this->set('purchaseHistories', $this->PurchaseHistory->find_monthly(Query::conditions_month('target_date', $ym)));
-	    $this->set('ym', $ym);
-	    $items = $this->PurchaseHistory->Item->find('list', ['conditions' => ['Item.type' => 1]]);
-	    $this->set(compact('items'));
 	}
 
         public function index_ajax()
@@ -253,7 +248,7 @@ class PurchaseHistoriesController extends AppController {
  * @param string $id
  * @return void
  */
-	public function delete_ajax() {
+	public function delete_ajax() { 
 	    $this->PurchaseHistory->id = $this->request->data('id');
 		if (!$this->PurchaseHistory->exists()) {
 			throw new NotFoundException(__('Invalid purchase history'));

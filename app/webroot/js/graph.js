@@ -150,6 +150,7 @@ function render_purchase_histories_list(){
             $html.find('.td_purchases span').text(_record.purchases);
             $html.find('.td_memo').find('input').attr('value', _record.memo);
             $html.find('.td_memo span').text(_record.memo);
+            $html.find('.delete').attr('data-id', _record.id);
             $('.list').append($html);
 
           });
