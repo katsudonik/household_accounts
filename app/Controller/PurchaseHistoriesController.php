@@ -30,6 +30,7 @@ class PurchaseHistoriesController extends AppController {
 	    'aggregate_by_item',
 	    'aggregate_timeline',
 	    'delete_ajax',
+	    'index_ajax',
 	];
 
 	public function beforeFilter() {
@@ -45,9 +46,9 @@ class PurchaseHistoriesController extends AppController {
  *
  * @return void
  */
-	public function index() {
-		$this->_index();
-    }
+	public function index(){
+          $this->_index();
+       }
 
 	public function aggregate_c3() {
 	    $ym = $this->_param('ym', date('Y-m'));
@@ -162,6 +163,16 @@ class PurchaseHistoriesController extends AppController {
 	    $items = $this->PurchaseHistory->Item->find('list', ['conditions' => ['Item.type' => 1]]);
 	    $this->set(compact('items'));
 	}
+
+        public function index_ajax()
+        {
+            $ym = $this->_param('ym', date('Y-m'));
+            $data = $this->PurchaseHistory->find_monthly(Query::conditions_month('target_date', $ym));
+            $this->set(array(
+                'purchaseHistories' => $data,
+                '_serialize' => array('purchaseHistories')
+            ));
+        }
 /**
  * view method
  *

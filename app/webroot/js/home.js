@@ -4,7 +4,7 @@ $(function(){
 	$('.item_id_before').hide();
 	$('._id').show();
 
-	$('._edit').on('click',function(){
+        $(document).on("click", "._edit", function () {
 		$tr = $(this).closest('tr');
 		$tr.find('span').hide();
 		$tr.find('input').show();
@@ -16,7 +16,7 @@ $(function(){
 		$tr.find('.price').focus();
 	});
 
-	$('.cancel').on('click',function(){
+        $(document).on("click", ".cancel", function () {
 		$tr = $(this).closest('tr');
 		$tr.find('span').show();
 		$('.item_id_before').hide();
@@ -36,7 +36,7 @@ $(function(){
 		$(this).hide();
 	});
 
-	$('.delete').on('click',function(){
+        $(document).on("click", ".delete", function () {
             if(window.confirm('削除しますか？')){
               $tr = $(this).closest('tr');
 	      $.ajax({

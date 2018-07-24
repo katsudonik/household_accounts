@@ -3,14 +3,21 @@ function display_loading(){
     $('.list').append("<img src=\"/img/loading01_r3_c5.gif\"/>");
 }
 
-function ajax_get(url, params, fnc){
+function ajax_get(url, params, fnc, dataType){
   display_loading();
   $(function(){
-    $.ajax({
+    request = {
       url: url,
       type:'GET',
       data: params
-    })
+    }
+    
+    if(dataType != undefined){
+      request['dataType'] = dataType; 
+    }
+
+
+    $.ajax(request)
     .done( (data) => {
         console.log(data);
         fnc(data);
@@ -110,3 +117,46 @@ function aggregate_to_line_chart(){
     'y':$('.term_selector').val(),
   }, render_line_chart);
 }
+
+function render_purchase_histories_list(){
+  ajax_get(
+    '/purchase_histories/index_ajax', 
+    {
+      'ym':$('.term_selector').val(),
+    },
+    (function (data){
+      ajax_get(
+        '/files/tmp_purchase_histories_list.html', 
+        {}, 
+        (function(html){
+          $('.list').empty();
+          $.each(data.purchaseHistories,function(index,record){
+            _record = record.PurchaseHistory;
+            console.log(_record);
+            $html = $(html);
+            $html.find('._id').val(_record.id);
+            $html.find('.td_id span').text(_record.id);
+
+            $html.find('.item_name').val(_record.item_id);
+            $html.find('.td_item_id span').text($html.find('.item_name option:selected').text());
+
+            $html.find('.target_date').find('.date').attr('value', _record.target_date);
+            $html.find('.target_date span').text(_record.target_date);
+            $html.find('.td_price').find('input').attr('value', _record.price);
+            $html.find('.td_price span').text(_record.price);
+            $html.find('.td_store_name').find('input').attr('value', _record.store_name);
+            $html.find('.td_store_name span').text(_record.store_name);
+            $html.find('.td_purchases').find('input').attr('value', _record.purchases);
+            $html.find('.td_purchases span').text(_record.purchases);
+            $html.find('.td_memo').find('input').attr('value', _record.memo);
+            $html.find('.td_memo span').text(_record.memo);
+            $('.list').append($html);
+
+          });
+        }),
+        'html'
+     )
+    })
+  );
+}
+

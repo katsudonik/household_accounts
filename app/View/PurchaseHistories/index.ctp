@@ -78,6 +78,7 @@ foreach($purchaseHistories as $i => $data){
 });
 
 $(function(){
+        render_purchase_histories_list();
         $('.term_selector').change(function() {
               location.href = $(this).data('url') + $(this).val();;
         });
@@ -87,7 +88,7 @@ $(function(){
              cnt = $('.date').length;
              $.ajax({
                     type: 'GET',
-                    url: '/files/tmp.html',
+                    url: '/files/tmp_new.html',
                     dataType: 'html',
                     success: function(data) {
                         $data = $(data);
@@ -108,7 +109,7 @@ $(function(){
 
 
 </script>
-
+<?php echo $this->Html->script('graph'); ?>
 <style>
 .price{
     width: 110px;
