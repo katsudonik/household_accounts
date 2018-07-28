@@ -8,6 +8,7 @@ $(function(){
 		$tr = $(this).closest('tr');
 		$tr.find('span').hide();
 		$tr.find('input').show();
+                $tr.find('.item_name').val($tr.find('.item_id_before').text());
 		$tr.find('select').show();
 		$tr.find('.cancel').show();
 		$tr.find('.submit').show();
