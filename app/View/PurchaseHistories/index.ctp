@@ -46,16 +46,14 @@ $(function(){
 
 
 	$('.add').on('click',function(){
-             cnt = $('.date').length;
              $.ajax({
                     type: 'GET',
                     url: '/files/tmp_new.html',
                     dataType: 'html',
                     success: function(data) {
                         $data = $(data);
-                        $data.find('.date').attr('id', '#datepicker_' + cnt);
-                        $data.find('.date').removeClass('hasDatepicker');
-                        $data.find('.date').datepicker({dateFormat: 'yy-mm-dd'});
+                        add_datepicker($data.find('.date'));
+
                         $('.list').append($data);
                     },
                     error:function() {
