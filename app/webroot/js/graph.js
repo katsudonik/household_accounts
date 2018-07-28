@@ -143,6 +143,8 @@ function render_purchase_histories_list(){
 
             $html.find('.target_date').find('.date').attr('value', _record.target_date);
             $html.find('.target_date span').text(_record.target_date);
+            add_datepicker($html.find('.date'));
+
             $html.find('.td_price').find('input').attr('value', _record.price);
             $html.find('.td_price span').text(_record.price);
             $html.find('.td_store_name').find('input').attr('value', _record.store_name);

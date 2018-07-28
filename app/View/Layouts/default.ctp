@@ -48,8 +48,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		echo $this->Html->script('submit');
 		echo $this->fetch('script');
 		echo $this->Html->script('dropdown');
+		echo $this->Html->script('datepicker_custom');
 	?>
-
 
 	 <script>$(function() {$('#datepicker').datepicker({dateFormat: 'yy-mm-dd'});});</script>
 
