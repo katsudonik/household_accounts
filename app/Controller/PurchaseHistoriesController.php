@@ -31,6 +31,7 @@ class PurchaseHistoriesController extends AppController {
 	    'aggregate_timeline',
 	    'delete_ajax',
 	    'index_ajax',
+	    'item_list',
 	];
 
 	public function beforeFilter() {
@@ -159,6 +160,16 @@ class PurchaseHistoriesController extends AppController {
 	{
 	}
 
+
+        public function item_list()
+        {
+           $items = $this->PurchaseHistory->Item->find('list', ['conditions' => ['Item.type' => 1]]);
+	   $this->set(array(
+             'items' => $items,
+             '_serialize' => array('items')
+           ));
+        }
+
         public function index_ajax()
         {
             $ym = $this->_param('ym', date('Y-m'));
@@ -201,6 +212,8 @@ class PurchaseHistoriesController extends AppController {
 		$items = $this->PurchaseHistory->Item->find('list', ['conditions' => ['Item.type' => 1]]);
 		$this->set(compact('items'));
 	}
+
+
 
 /**
  * edit method

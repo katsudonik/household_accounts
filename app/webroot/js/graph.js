@@ -137,6 +137,7 @@ function render_purchase_histories_list(){
             $html.find('._id').val(_record.id);
             $html.find('.td_id span').text(_record.id);
 
+            $html.find('.item_name').append($('.item_select_tmp').children('option'));
             $html.find('.item_id_before').text(_record.item_id);
             $html.find('.item_name').val($html.find('.item_id_before').text());
             $html.find('.td_item_id .label').text($html.find('.item_name option:selected').text());
@@ -164,3 +165,16 @@ function render_purchase_histories_list(){
   );
 }
 
+function render_item_list(){
+  ajax_get(
+    '/purchase_histories/item_list',
+    {
+    },
+    (function (data){
+          $.each(data.items,function(index,label){
+            $('.item_select_tmp').append("<option value=\"" + index + "\">" + label + "</option>");
+          });
+      
+    })
+  );
+}

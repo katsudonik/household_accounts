@@ -28,6 +28,10 @@
 
 		<a class="add trn" href="javascript:void(0)">+</a>
 
+
+<select name="data[PurchaseHistory][item_id][]" style="display:none;" class="item_select_tmp" id="PurchaseHistoryItemId" required="required">
+</select>
+
 <script>
 $(function() {
 <?php
@@ -39,6 +43,7 @@ $(function() {
 });
 
 $(function(){
+        render_item_list();
         render_purchase_histories_list();
         $('.term_selector').change(function() {
              render_purchase_histories_list();
@@ -61,6 +66,8 @@ $(function(){
                     }
              });
 	});
+
+
 });
 
 
