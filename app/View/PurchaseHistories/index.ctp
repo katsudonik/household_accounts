@@ -57,6 +57,7 @@ $(function(){
                     dataType: 'html',
                     success: function(data) {
                         $data = $(data);
+                        append_item_list($data.find('.item_name'));
                         add_datepicker($data.find('.date'));
 
                         $('.list').append($data);
