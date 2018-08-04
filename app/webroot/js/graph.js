@@ -1,5 +1,6 @@
 
 function display_loading(){
+    $('.list').empty();
     $('.list').append("<img src=\"/img/loading01_r3_c5.gif\"/>");
 }
 
