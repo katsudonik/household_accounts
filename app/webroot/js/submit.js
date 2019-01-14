@@ -1,5 +1,5 @@
 $(function(){
-	$('.submit').on('click',function(){
+        $(document).on("click", ".submit", function () {
 		$(this).closest('form').submit();
 	});
 

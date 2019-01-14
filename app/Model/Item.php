@@ -99,9 +99,9 @@ class Item extends AppModel {
 
 	private $_virtualFields = array(
 	    'name' => 'Item.name',
- 	    'schedule_price' => 'PurchaseSchedule.price',
+ 	    'schedule_price' => 'CASE WHEN PurchaseSchedule.price IS NULL THEN 0 ELSE PurchaseSchedule.price END',
 	    'price' => 'CASE WHEN PurchaseHistory.price IS NULL THEN 0 ELSE PurchaseHistory.price END',
-	    'remain' => 'CASE WHEN PurchaseHistory.price IS NULL THEN PurchaseSchedule.price ELSE  PurchaseSchedule.price - PurchaseHistory.price END',
+	    'remain' => 'CASE WHEN PurchaseHistory.price IS NULL THEN CASE WHEN PurchaseSchedule.price IS NULL THEN 0 ELSE PurchaseSchedule.price END ELSE CASE WHEN PurchaseSchedule.price IS NULL THEN 0 ELSE PurchaseSchedule.price END - PurchaseHistory.price END',
 	);
 
 	public function agg_of_month($ym, $commonCond = [], $fields = [

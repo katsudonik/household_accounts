@@ -12,49 +12,7 @@
 			<th class="trn"><a class="chart" href="javascript:void(0)"><b class="trn">chart</b></a></th>
 	</tr>
 	</thead>
-	<tbody>
-
-	<?php foreach ($aggregateItemHistories as $purchaseHistory): ?>
-	<tr>
-		<td>
-			<?php echo h($purchaseHistory['name']); ?>
-		</td>
-		<td>
-			<?php echo h($purchaseHistory['schedule_price']); ?>
-		</td>
-		<td>
-			<?php echo h($purchaseHistory['price']); ?>
-		</td>
-		<td>
-			<?php echo h($purchaseHistory['remain']); ?>
-		</td>
-		<td>
-			<div id="chart_<?php echo h($purchaseHistory['id']); ?>"></div>
-		</td>
-	</tr>
-<?php endforeach; ?>
-	<tr>
-		<td>
-			<b>
-				Sum
-			</b>
-		</td>
-		<td>
-			<b>
-				<?php echo h($aggregateSumHistory['schedule_price']); ?>
-			</b>
-		</td>
-		<td>
-			<b>
-				<?php echo h($aggregateSumHistory['price']); ?>
-			</b>
-		</td>
-		<td>
-			<b>
-				<?php echo h($aggregateSumHistory['remain']); ?>
-			</b>
-		</td>
-	</tr>
+	<tbody class="list">
 	</tbody>
 	</table>
 
@@ -65,9 +23,14 @@
 
 <?php echo $this->Html->script('graph'); ?>
 <script>
-$(function(){
-	$('.chart').on('click',function(){
-		aggregate_c3();
-	});
-});
+  aggregate_by_month();
+  $(function(){
+    $('.term_selector').change(function() {
+      aggregate_by_month();
+    });
+    $('.chart').on('click',function(){
+      render_pie_chart();
+    });
+  });
+
 </script>

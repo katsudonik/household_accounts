@@ -27,9 +27,11 @@ class PurchaseHistoriesController extends AppController {
 
 	const API_ACTIONS = [
 	    'aggregate_c3',
-	    'aggregate_c3_item',
-	    'aggregate_c3_all',
+	    'aggregate_by_item',
+	    'aggregate_timeline',
 	    'delete_ajax',
+	    'index_ajax',
+	    'item_list',
 	];
 
 	public function beforeFilter() {
@@ -45,9 +47,9 @@ class PurchaseHistoriesController extends AppController {
  *
  * @return void
  */
-	public function index() {
-		$this->_index();
-    }
+	public function index(){
+          $this->_index();
+       }
 
 	public function aggregate_c3() {
 	    $ym = $this->_param('ym', date('Y-m'));
@@ -76,12 +78,8 @@ class PurchaseHistoriesController extends AppController {
 	 * 年集計一覧
 	 */
 	public function aggregate_by_year(){
-	    $this->PurchaseHistory->recursive = 0;
-
 	    $year = $this->_param('y', date('Y'));
-	    $aggregateItemHistories = $this->Item->agg_of_year($year, [], ['name', 'price',]);
-	    $this->set('aggregateItemHistories', $aggregateItemHistories);
-	    $this->set('aggregateSumHistory', $this->Item->aggregate_monthly_purchase($aggregateItemHistories));
+	    $this->set('y', $year);
 	}
 
 	/*
@@ -89,31 +87,32 @@ class PurchaseHistoriesController extends AppController {
 	 */
 	public function aggregate_by_month(){
 	    $ym = $this->_param('ym', date('Y-m'));
-
-	    $aggregateItemHistories = $this->Item->agg_of_month($ym);
-	    $this->set('aggregateItemHistories', $aggregateItemHistories);
-	    $this->set('aggregateSumHistory', $this->Item->aggregate_monthly_purchase($aggregateItemHistories));
 	    $this->set('ym', $ym);
 	}
 
     /*
-     * 年次項目別消費額表
+     * 年次項目別消費額
      */
-	public function aggregate_c3_item(){
-	    $year = $this->_param('y', date('Y'));
-	    $aggregateItemHistories = $this->Item->agg_of_year($year, [], ['name', 'price',]);
-	    $this->set('aggregateItemHistories', $aggregateItemHistories);
+	public function aggregate_by_item(){
+	    if($this->_param('term_type', 'y') == 'y'){
+	      $target = $this->_param('y', date('Y'));
+	      $aggregateItemHistories = $this->Item->agg_of_year($target, [], ['name', 'price',]);
+            }else{
+	      $target = $this->_param('ym', date('Y-m'));
+	      $aggregateItemHistories = $this->Item->agg_of_month($target);
+            }
 
 	    $this->set(array(
 	        'aggregateItemHistories' => $aggregateItemHistories,
-	        '_serialize' => array('aggregateItemHistories')
+                'aggregateSumHistory' => $this->Item->aggregate_monthly_purchase($aggregateItemHistories),
+	        '_serialize' => array('aggregateItemHistories', 'aggregateSumHistory')
 	    ));
 	}
 
 	/*
 	 * 年間項目別消費額時系列グラフ
 	 */
-	public function aggregate_c3_all() {
+	public function aggregate_timeline() {
 	    $year = $this->_param('y', date('Y'));
 	    $start = strtotime($year . '-01-01');
 	    $end = strtotime($year . '-12-01');
@@ -159,12 +158,27 @@ class PurchaseHistoriesController extends AppController {
 
 	private function _index()
 	{
-	    $ym = $this->_param('ym', date('Y-m'));
-	    $this->set('purchaseHistories', $this->PurchaseHistory->find_monthly(Query::conditions_month('target_date', $ym)));
-	    $this->set('ym', $ym);
-	    $items = $this->PurchaseHistory->Item->find('list', ['conditions' => ['Item.type' => 1]]);
-	    $this->set(compact('items'));
 	}
+
+
+        public function item_list()
+        {
+           $items = $this->PurchaseHistory->Item->find('list', ['conditions' => ['Item.type' => 1]]);
+	   $this->set(array(
+             'items' => $items,
+             '_serialize' => array('items')
+           ));
+        }
+
+        public function index_ajax()
+        {
+            $ym = $this->_param('ym', date('Y-m'));
+            $data = $this->PurchaseHistory->find_monthly(Query::conditions_month('target_date', $ym));
+            $this->set(array(
+                'purchaseHistories' => $data,
+                '_serialize' => array('purchaseHistories')
+            ));
+        }
 /**
  * view method
  *
@@ -198,6 +212,8 @@ class PurchaseHistoriesController extends AppController {
 		$items = $this->PurchaseHistory->Item->find('list', ['conditions' => ['Item.type' => 1]]);
 		$this->set(compact('items'));
 	}
+
+
 
 /**
  * edit method
@@ -245,7 +261,7 @@ class PurchaseHistoriesController extends AppController {
  * @param string $id
  * @return void
  */
-	public function delete_ajax() {
+	public function delete_ajax() { 
 	    $this->PurchaseHistory->id = $this->request->data('id');
 		if (!$this->PurchaseHistory->exists()) {
 			throw new NotFoundException(__('Invalid purchase history'));

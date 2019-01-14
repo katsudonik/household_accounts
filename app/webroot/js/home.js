@@ -4,10 +4,11 @@ $(function(){
 	$('.item_id_before').hide();
 	$('._id').show();
 
-	$('._edit').on('click',function(){
+        $(document).on("click", "._edit", function () {
 		$tr = $(this).closest('tr');
 		$tr.find('span').hide();
 		$tr.find('input').show();
+                $tr.find('.item_name').val($tr.find('.item_id_before').text());
 		$tr.find('select').show();
 		$tr.find('.cancel').show();
 		$tr.find('.submit').show();
@@ -16,7 +17,7 @@ $(function(){
 		$tr.find('.price').focus();
 	});
 
-	$('.cancel').on('click',function(){
+        $(document).on("click", ".cancel", function () {
 		$tr = $(this).closest('tr');
 		$tr.find('span').show();
 		$('.item_id_before').hide();
@@ -36,24 +37,32 @@ $(function(){
 		$(this).hide();
 	});
 
-	$('.delete').on('click',function(){
-		$tr = $(this).closest('tr');
-	    $.ajax({
-	        url:'/purchase_histories/delete_ajax',
-	        type:'POST',
-	        data:{
-	        	'id' : $(this).data('id'),
-	        }
-	    })
-	    .done( (data) => {
-	        console.log(data);
-	        $tr.hide();
-	    })
-	    .fail( (data) => {
-	        console.log(data);
-	    });
+        $(document).on("click", ".delete", function () {
+            if(window.confirm('削除しますか？')){
+              $tr = $(this).closest('tr');
+	      $.ajax({
+	          url:'/purchase_histories/delete_ajax',
+	          type:'POST',
+	          data:{
+	          	'id' : $(this).data('id'),
+	          }
+	      })
+	      .done( (data) => {
+	          console.log(data);
+	          $tr.remove();
+	      })
+	      .fail( (data) => {
+	          console.log(data);
+	      });
+	    }
 	});
 
+        $(document).on("click", ".delete_add", function () {
+            if(window.confirm('削除しますか？')){
+              $tr = $(this).closest('tr');
+                  $tr.remove();
+            }
+        });
 });
 
 
